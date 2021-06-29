@@ -25,6 +25,8 @@ class CreateRecipientRequest(object):
         metadata (dict<object, string>): Metadata
         transfer_settings (CreateTransferSettingsRequest): Receiver Transfer
             Information
+        code (string): Recipient code
+        payment_mode (string): Payment mode
 
     """
 
@@ -37,6 +39,8 @@ class CreateRecipientRequest(object):
         "mtype":'type',
         "default_bank_account":'default_bank_account',
         "metadata":'metadata',
+        "code":'code',
+        "payment_mode":'payment_mode',
         "transfer_settings":'transfer_settings'
     }
 
@@ -48,6 +52,8 @@ class CreateRecipientRequest(object):
                  mtype=None,
                  default_bank_account=None,
                  metadata=None,
+                 code=None,
+                 payment_mode='bank_transfer',
                  transfer_settings=None):
         """Constructor for the CreateRecipientRequest class"""
 
@@ -60,6 +66,8 @@ class CreateRecipientRequest(object):
         self.default_bank_account = default_bank_account
         self.metadata = metadata
         self.transfer_settings = transfer_settings
+        self.code = code
+        self.payment_mode = payment_mode
 
 
     @classmethod
@@ -87,6 +95,8 @@ class CreateRecipientRequest(object):
         mtype = dictionary.get('type')
         default_bank_account = pagarmecoreapi.models.create_bank_account_request.CreateBankAccountRequest.from_dictionary(dictionary.get('default_bank_account')) if dictionary.get('default_bank_account') else None
         metadata = dictionary.get('metadata')
+        code = dictionary.get('code')
+        payment_mode = dictionary.get("payment_mode") if dictionary.get("payment_mode") else 'bank_transfer'
         transfer_settings = pagarmecoreapi.models.create_transfer_settings_request.CreateTransferSettingsRequest.from_dictionary(dictionary.get('transfer_settings')) if dictionary.get('transfer_settings') else None
 
         # Return an object of this model
@@ -97,6 +107,8 @@ class CreateRecipientRequest(object):
                    mtype,
                    default_bank_account,
                    metadata,
+                   code,
+                   payment_mode,
                    transfer_settings)
 
 

@@ -8,22 +8,26 @@
 
 from pagarmecoreapi.decorators import lazy_property
 from pagarmecoreapi.configuration import Configuration
+from pagarmecoreapi.controllers.plans_controller import PlansController
 from pagarmecoreapi.controllers.subscriptions_controller import SubscriptionsController
 from pagarmecoreapi.controllers.orders_controller import OrdersController
-from pagarmecoreapi.controllers.plans_controller import PlansController
 from pagarmecoreapi.controllers.invoices_controller import InvoicesController
 from pagarmecoreapi.controllers.customers_controller import CustomersController
 from pagarmecoreapi.controllers.charges_controller import ChargesController
+from pagarmecoreapi.controllers.transfers_controller import TransfersController
 from pagarmecoreapi.controllers.recipients_controller import RecipientsController
 from pagarmecoreapi.controllers.tokens_controller import TokensController
 from pagarmecoreapi.controllers.sellers_controller import SellersController
 from pagarmecoreapi.controllers.transactions_controller import TransactionsController
-from pagarmecoreapi.controllers.transfers_controller import TransfersController
 
 
 class PagarmecoreapiClient(object):
 
     config = Configuration
+
+    @lazy_property
+    def plans(self):
+        return PlansController()
 
     @lazy_property
     def subscriptions(self):
@@ -32,10 +36,6 @@ class PagarmecoreapiClient(object):
     @lazy_property
     def orders(self):
         return OrdersController()
-
-    @lazy_property
-    def plans(self):
-        return PlansController()
 
     @lazy_property
     def invoices(self):
@@ -48,6 +48,10 @@ class PagarmecoreapiClient(object):
     @lazy_property
     def charges(self):
         return ChargesController()
+
+    @lazy_property
+    def transfers(self):
+        return TransfersController()
 
     @lazy_property
     def recipients(self):
@@ -64,10 +68,6 @@ class PagarmecoreapiClient(object):
     @lazy_property
     def transactions(self):
         return TransactionsController()
-
-    @lazy_property
-    def transfers(self):
-        return TransfersController()
 
 
     def __init__(self,
