@@ -24,6 +24,7 @@ class CreateBankAccountRequest(object):
         account_check_digit (string): Account check digit
         mtype (string): Bank account type
         metadata (dict<object, string>): Metadata
+        pix_key (string): Pix key
 
     """
 
@@ -38,7 +39,8 @@ class CreateBankAccountRequest(object):
         "account_number":'account_number',
         "account_check_digit":'account_check_digit',
         "mtype":'type',
-        "metadata":'metadata'
+        "metadata":'metadata',
+        "pix_key":'pix_key'
     }
 
     def __init__(self,
@@ -51,7 +53,8 @@ class CreateBankAccountRequest(object):
                  account_number=None,
                  account_check_digit=None,
                  mtype=None,
-                 metadata=None):
+                 metadata=None,
+                 pix_key=None):
         """Constructor for the CreateBankAccountRequest class"""
 
         # Initialize members of the class
@@ -65,6 +68,7 @@ class CreateBankAccountRequest(object):
         self.account_check_digit = account_check_digit
         self.mtype = mtype
         self.metadata = metadata
+        self.pix_key = pix_key
 
 
     @classmethod
@@ -95,6 +99,7 @@ class CreateBankAccountRequest(object):
         account_check_digit = dictionary.get('account_check_digit')
         mtype = dictionary.get('type')
         metadata = dictionary.get('metadata')
+        pix_key = dictionary.get('pix_key')
 
         # Return an object of this model
         return cls(holder_name,
@@ -106,6 +111,7 @@ class CreateBankAccountRequest(object):
                    account_number,
                    account_check_digit,
                    mtype,
-                   metadata)
+                   metadata,
+                   pix_key)
 
 

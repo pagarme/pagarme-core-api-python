@@ -31,6 +31,7 @@ class GetBankAccountResponse(object):
         deleted_at (datetime): Deletion date
         recipient (GetRecipientResponse): Recipient
         metadata (dict<object, string>): Metadata
+        pix_key (string): Pix Key
 
     """
 
@@ -50,6 +51,7 @@ class GetBankAccountResponse(object):
         "updated_at":'updated_at',
         "deleted_at":'deleted_at',
         "metadata":'metadata',
+        "pix_key":'pix_key',
         "recipient":'recipient'
     }
 
@@ -68,6 +70,7 @@ class GetBankAccountResponse(object):
                  updated_at=None,
                  deleted_at=None,
                  metadata=None,
+                 pix_key=None,
                  recipient=None):
         """Constructor for the GetBankAccountResponse class"""
 
@@ -87,6 +90,7 @@ class GetBankAccountResponse(object):
         self.deleted_at = APIHelper.RFC3339DateTime(deleted_at) if deleted_at else None
         self.recipient = recipient
         self.metadata = metadata
+        self.pix_key = pix_key
 
 
     @classmethod
@@ -121,6 +125,7 @@ class GetBankAccountResponse(object):
         updated_at = APIHelper.RFC3339DateTime.from_value(dictionary.get("updated_at")).datetime if dictionary.get("updated_at") else None
         deleted_at = APIHelper.RFC3339DateTime.from_value(dictionary.get("deleted_at")).datetime if dictionary.get("deleted_at") else None
         metadata = dictionary.get('metadata')
+        pix_key = dictionary.get('pix_key')
         recipient = pagarmecoreapi.models.get_recipient_response.GetRecipientResponse.from_dictionary(dictionary.get('recipient')) if dictionary.get('recipient') else None
 
         # Return an object of this model
@@ -138,6 +143,7 @@ class GetBankAccountResponse(object):
                    updated_at,
                    deleted_at,
                    metadata,
+                   pix_key,
                    recipient)
 
 

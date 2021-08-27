@@ -23,7 +23,7 @@ class Configuration(object):
     array_serialization = "indexed"
 
     # The base Uri for API calls
-    base_uri = 'https://api.pagar.me/core/v1'
+    base_uri = 'https://api.pagar.me/core/v5'
 
     # The username to use with basic authentication
     # TODO: Set an appropriate value
