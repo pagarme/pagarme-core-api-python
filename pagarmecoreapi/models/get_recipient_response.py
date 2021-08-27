@@ -37,6 +37,8 @@ class GetRecipientResponse(object):
             TODO: type description here.
         transfer_settings (GetTransferSettingsResponse): TODO: type
             description here.
+        code (string): Recipient code
+        payment_mode (string): Payment mode
 
     """
 
@@ -55,6 +57,8 @@ class GetRecipientResponse(object):
         "default_bank_account":'default_bank_account',
         "gateway_recipients":'gateway_recipients',
         "metadata":'metadata',
+        "code":'code',
+        "payment_mode":'payment_mode',
         "automatic_anticipation_settings":'automatic_anticipation_settings',
         "transfer_settings":'transfer_settings'
     }
@@ -73,6 +77,8 @@ class GetRecipientResponse(object):
                  default_bank_account=None,
                  gateway_recipients=None,
                  metadata=None,
+                 code=None,
+                 payment_mode='bank_transfer',
                  automatic_anticipation_settings=None,
                  transfer_settings=None):
         """Constructor for the GetRecipientResponse class"""
@@ -93,6 +99,8 @@ class GetRecipientResponse(object):
         self.metadata = metadata
         self.automatic_anticipation_settings = automatic_anticipation_settings
         self.transfer_settings = transfer_settings
+        self.code = code
+        self.payment_mode = payment_mode
 
 
     @classmethod
@@ -130,6 +138,8 @@ class GetRecipientResponse(object):
             for structure in dictionary.get('gateway_recipients'):
                 gateway_recipients.append(pagarmecoreapi.models.get_gateway_recipient_response.GetGatewayRecipientResponse.from_dictionary(structure))
         metadata = dictionary.get('metadata')
+        code = dictionary.get('code')
+        payment_mode = dictionary.get("payment_mode") if dictionary.get("payment_mode") else 'bank_transfer'
         automatic_anticipation_settings = pagarmecoreapi.models.get_automatic_anticipation_response.GetAutomaticAnticipationResponse.from_dictionary(dictionary.get('automatic_anticipation_settings')) if dictionary.get('automatic_anticipation_settings') else None
         transfer_settings = pagarmecoreapi.models.get_transfer_settings_response.GetTransferSettingsResponse.from_dictionary(dictionary.get('transfer_settings')) if dictionary.get('transfer_settings') else None
 
@@ -147,6 +157,8 @@ class GetRecipientResponse(object):
                    default_bank_account,
                    gateway_recipients,
                    metadata,
+                   code,
+                   payment_mode,
                    automatic_anticipation_settings,
                    transfer_settings)
 
