@@ -15,7 +15,7 @@ This should display the version of the PIP Dependency Manager installed if your 
 * Using command line, navigate to the directory containing the generated files (including ```requirements.txt```) for the SDK.
 * Run the command ```pip install -r requirements.txt```. This should install all the required dependencies.
 
-![Building SDK - Step 1](https://apidocs.io/illustration/python?step=installDependencies&workspaceFolder=Pagarme.Core.Api-Python)
+![Building SDK - Step 1](https://apidocs.io/illustration/python?step=installDependencies&workspaceFolder=PagarmeCoreApi-Python)
 
 
 ## How to Use
@@ -30,17 +30,17 @@ Open up a Python IDE like PyCharm. The basic workflow presented here is also app
 
 Click on ```Open``` in PyCharm to browse to your generated SDK directory and then click ```OK```.
 
-![Open project in PyCharm - Step 2](https://apidocs.io/illustration/python?step=openProject0&workspaceFolder=Pagarme.Core.Api-Python)     
+![Open project in PyCharm - Step 2](https://apidocs.io/illustration/python?step=openProject0&workspaceFolder=PagarmeCoreApi-Python)     
 
 The project files will be displayed in the side bar as follows:
 
-![Open project in PyCharm - Step 3](https://apidocs.io/illustration/python?step=openProject1&workspaceFolder=Pagarme.Core.Api-Python&projectName=pagarmecoreapi)     
+![Open project in PyCharm - Step 3](https://apidocs.io/illustration/python?step=openProject1&workspaceFolder=PagarmeCoreApi-Python&projectName=pagarmecoreapi)     
 
 ### 2. Add a new Test Project
 
 Create a new directory by right clicking on the solution name as shown below:
 
-![Add a new project in PyCharm - Step 1](https://apidocs.io/illustration/python?step=createDirectory&workspaceFolder=Pagarme.Core.Api-Python&projectName=pagarmecoreapi)
+![Add a new project in PyCharm - Step 1](https://apidocs.io/illustration/python?step=createDirectory&workspaceFolder=PagarmeCoreApi-Python&projectName=pagarmecoreapi)
 
 Name the directory as "test"
 
@@ -48,7 +48,7 @@ Name the directory as "test"
    
 Add a python file to this project with the name "testsdk"
 
-![Add a new project in PyCharm - Step 3](https://apidocs.io/illustration/python?step=createFile&workspaceFolder=Pagarme.Core.Api-Python&projectName=pagarmecoreapi)
+![Add a new project in PyCharm - Step 3](https://apidocs.io/illustration/python?step=createFile&workspaceFolder=PagarmeCoreApi-Python&projectName=pagarmecoreapi)
 
 Name it "testsdk"
 
@@ -60,7 +60,7 @@ In your python file you will be required to import the generated python library 
 from pagarmecoreapi.pagarmecoreapi_client import PagarmecoreapiClient
 ```
 
-![Add a new project in PyCharm - Step 4](https://apidocs.io/illustration/python?step=projectFiles&workspaceFolder=Pagarme.Core.Api-Python&libraryName=pagarmecoreapi.pagarmecoreapi_client&projectName=pagarmecoreapi&className=PagarmecoreapiClient)
+![Add a new project in PyCharm - Step 4](https://apidocs.io/illustration/python?step=projectFiles&workspaceFolder=PagarmeCoreApi-Python&libraryName=pagarmecoreapi.pagarmecoreapi_client&projectName=pagarmecoreapi&className=PagarmecoreapiClient)
 
 After this you can write code to instantiate an API client object, get a controller object and  make API calls. Sample code is given in the subsequent sections.
 
@@ -68,7 +68,7 @@ After this you can write code to instantiate an API client object, get a control
 
 To run the file within your test project, right click on your Python file inside your Test project and click on ```Run```
 
-![Run Test Project - Step 1](https://apidocs.io/illustration/python?step=runProject&workspaceFolder=Pagarme.Core.Api-Python&libraryName=pagarmecoreapi.pagarmecoreapi_client&projectName=pagarmecoreapi&className=PagarmecoreapiClient)
+![Run Test Project - Step 1](https://apidocs.io/illustration/python?step=runProject&workspaceFolder=PagarmeCoreApi-Python&libraryName=pagarmecoreapi.pagarmecoreapi_client&projectName=pagarmecoreapi&className=PagarmecoreapiClient)
 
 
 ## How to Test
@@ -111,12 +111,12 @@ client = PagarmecoreapiClient(basic_auth_user_name, basic_auth_password)
 
 * [PlansController](#plans_controller)
 * [SubscriptionsController](#subscriptions_controller)
-* [OrdersController](#orders_controller)
 * [InvoicesController](#invoices_controller)
+* [OrdersController](#orders_controller)
 * [CustomersController](#customers_controller)
+* [RecipientsController](#recipients_controller)
 * [ChargesController](#charges_controller)
 * [TransfersController](#transfers_controller)
-* [RecipientsController](#recipients_controller)
 * [TokensController](#tokens_controller)
 * [SellersController](#sellers_controller)
 * [TransactionsController](#transactions_controller)
@@ -154,6 +154,36 @@ def get_plan(self,
 plan_id = 'plan_id'
 
 result = plans_controller.get_plan(plan_id)
+
+```
+
+
+### <a name="delete_plan"></a>![Method: ](https://apidocs.io/img/method.png ".PlansController.delete_plan") delete_plan
+
+> Deletes a plan
+
+```python
+def delete_plan(self,
+                    plan_id,
+                    idempotency_key=None)
+```
+
+#### Parameters
+
+| Parameter | Tags | Description |
+|-----------|------|-------------|
+| planId |  ``` Required ```  | Plan id |
+| idempotencyKey |  ``` Optional ```  | TODO: Add a parameter description |
+
+
+
+#### Example Usage
+
+```python
+plan_id = 'plan_id'
+idempotency_key = 'idempotency-key'
+
+result = plans_controller.delete_plan(plan_id, idempotency_key)
 
 ```
 
@@ -385,8 +415,8 @@ def get_plans(self,
 #### Example Usage
 
 ```python
-page = 25
-size = 25
+page = 149
+size = 149
 name = 'name'
 status = 'status'
 billing_type = 'billing_type'
@@ -431,36 +461,6 @@ result = plans_controller.update_plan(plan_id, request, idempotency_key)
 ```
 
 
-### <a name="delete_plan"></a>![Method: ](https://apidocs.io/img/method.png ".PlansController.delete_plan") delete_plan
-
-> Deletes a plan
-
-```python
-def delete_plan(self,
-                    plan_id,
-                    idempotency_key=None)
-```
-
-#### Parameters
-
-| Parameter | Tags | Description |
-|-----------|------|-------------|
-| planId |  ``` Required ```  | Plan id |
-| idempotencyKey |  ``` Optional ```  | TODO: Add a parameter description |
-
-
-
-#### Example Usage
-
-```python
-plan_id = 'plan_id'
-idempotency_key = 'idempotency-key'
-
-result = plans_controller.delete_plan(plan_id, idempotency_key)
-
-```
-
-
 [Back to List of Controllers](#list_of_controllers)
 
 ## <a name="subscriptions_controller"></a>![Class: ](https://apidocs.io/img/class.png ".SubscriptionsController") SubscriptionsController
@@ -472,6 +472,36 @@ An instance of the ``` SubscriptionsController ``` class can be accessed from th
 ```python
  subscriptions_controller = client.subscriptions
 ```
+
+### <a name="renew_subscription"></a>![Method: ](https://apidocs.io/img/method.png ".SubscriptionsController.renew_subscription") renew_subscription
+
+> TODO: Add a method description
+
+```python
+def renew_subscription(self,
+                           subscription_id,
+                           idempotency_key=None)
+```
+
+#### Parameters
+
+| Parameter | Tags | Description |
+|-----------|------|-------------|
+| subscriptionId |  ``` Required ```  | TODO: Add a parameter description |
+| idempotencyKey |  ``` Optional ```  | TODO: Add a parameter description |
+
+
+
+#### Example Usage
+
+```python
+subscription_id = 'subscription_id'
+idempotency_key = 'idempotency-key'
+
+result = subscriptions_controller.renew_subscription(subscription_id, idempotency_key)
+
+```
+
 
 ### <a name="update_subscription_card"></a>![Method: ](https://apidocs.io/img/method.png ".SubscriptionsController.update_subscription_card") update_subscription_card
 
@@ -641,39 +671,6 @@ subscriptions_controller.update_current_cycle_status(subscription_id, request, i
 ```
 
 
-### <a name="update_subscription_payment_method"></a>![Method: ](https://apidocs.io/img/method.png ".SubscriptionsController.update_subscription_payment_method") update_subscription_payment_method
-
-> Updates the payment method from a subscription
-
-```python
-def update_subscription_payment_method(self,
-                                           subscription_id,
-                                           request,
-                                           idempotency_key=None)
-```
-
-#### Parameters
-
-| Parameter | Tags | Description |
-|-----------|------|-------------|
-| subscriptionId |  ``` Required ```  | Subscription id |
-| request |  ``` Required ```  | Request for updating the paymentmethod from a subscription |
-| idempotencyKey |  ``` Optional ```  | TODO: Add a parameter description |
-
-
-
-#### Example Usage
-
-```python
-subscription_id = 'subscription_id'
-request = UpdateSubscriptionPaymentMethodRequest()
-idempotency_key = 'idempotency-key'
-
-result = subscriptions_controller.update_subscription_payment_method(subscription_id, request, idempotency_key)
-
-```
-
-
 ### <a name="delete_discount"></a>![Method: ](https://apidocs.io/img/method.png ".SubscriptionsController.delete_discount") delete_discount
 
 > Deletes a discount
@@ -744,8 +741,8 @@ def get_subscription_items(self,
 
 ```python
 subscription_id = 'subscription_id'
-page = 25
-size = 25
+page = 149
+size = 149
 name = 'name'
 code = 'code'
 status = 'status'
@@ -754,6 +751,39 @@ created_since = 'created_since'
 created_until = 'created_until'
 
 result = subscriptions_controller.get_subscription_items(subscription_id, page, size, name, code, status, description, created_since, created_until)
+
+```
+
+
+### <a name="update_subscription_payment_method"></a>![Method: ](https://apidocs.io/img/method.png ".SubscriptionsController.update_subscription_payment_method") update_subscription_payment_method
+
+> Updates the payment method from a subscription
+
+```python
+def update_subscription_payment_method(self,
+                                           subscription_id,
+                                           request,
+                                           idempotency_key=None)
+```
+
+#### Parameters
+
+| Parameter | Tags | Description |
+|-----------|------|-------------|
+| subscriptionId |  ``` Required ```  | Subscription id |
+| request |  ``` Required ```  | Request for updating the paymentmethod from a subscription |
+| idempotencyKey |  ``` Optional ```  | TODO: Add a parameter description |
+
+
+
+#### Example Usage
+
+```python
+subscription_id = 'subscription_id'
+request = UpdateSubscriptionPaymentMethodRequest()
+idempotency_key = 'idempotency-key'
+
+result = subscriptions_controller.update_subscription_payment_method(subscription_id, request, idempotency_key)
 
 ```
 
@@ -830,8 +860,8 @@ def get_subscriptions(self,
 #### Example Usage
 
 ```python
-page = 25
-size = 25
+page = 149
+size = 149
 code = 'code'
 billing_type = 'billing_type'
 customer_id = 'customer_id'
@@ -950,6 +980,36 @@ result = subscriptions_controller.create_usage(subscription_id, item_id, body, i
 ```
 
 
+### <a name="get_discount_by_id"></a>![Method: ](https://apidocs.io/img/method.png ".SubscriptionsController.get_discount_by_id") get_discount_by_id
+
+> TODO: Add a method description
+
+```python
+def get_discount_by_id(self,
+                           subscription_id,
+                           discount_id)
+```
+
+#### Parameters
+
+| Parameter | Tags | Description |
+|-----------|------|-------------|
+| subscriptionId |  ``` Required ```  | The subscription id |
+| discountId |  ``` Required ```  | TODO: Add a parameter description |
+
+
+
+#### Example Usage
+
+```python
+subscription_id = 'subscription_id'
+discount_id = 'discountId'
+
+result = subscriptions_controller.get_discount_by_id(subscription_id, discount_id)
+
+```
+
+
 ### <a name="create_subscription"></a>![Method: ](https://apidocs.io/img/method.png ".SubscriptionsController.create_subscription") create_subscription
 
 > Creates a new subscription
@@ -980,22 +1040,22 @@ result = subscriptions_controller.create_subscription(body, idempotency_key)
 ```
 
 
-### <a name="get_discount_by_id"></a>![Method: ](https://apidocs.io/img/method.png ".SubscriptionsController.get_discount_by_id") get_discount_by_id
+### <a name="get_increment_by_id"></a>![Method: ](https://apidocs.io/img/method.png ".SubscriptionsController.get_increment_by_id") get_increment_by_id
 
 > TODO: Add a method description
 
 ```python
-def get_discount_by_id(self,
-                           subscription_id,
-                           discount_id)
+def get_increment_by_id(self,
+                            subscription_id,
+                            increment_id)
 ```
 
 #### Parameters
 
 | Parameter | Tags | Description |
 |-----------|------|-------------|
-| subscriptionId |  ``` Required ```  | The subscription id |
-| discountId |  ``` Required ```  | TODO: Add a parameter description |
+| subscriptionId |  ``` Required ```  | The subscription Id |
+| incrementId |  ``` Required ```  | The increment Id |
 
 
 
@@ -1003,9 +1063,9 @@ def get_discount_by_id(self,
 
 ```python
 subscription_id = 'subscription_id'
-discount_id = 'discountId'
+increment_id = 'increment_id'
 
-result = subscriptions_controller.get_discount_by_id(subscription_id, discount_id)
+result = subscriptions_controller.get_increment_by_id(subscription_id, increment_id)
 
 ```
 
@@ -1142,36 +1202,6 @@ result = subscriptions_controller.get_subscription_cycles(subscription_id, page,
 ```
 
 
-### <a name="get_increment_by_id"></a>![Method: ](https://apidocs.io/img/method.png ".SubscriptionsController.get_increment_by_id") get_increment_by_id
-
-> TODO: Add a method description
-
-```python
-def get_increment_by_id(self,
-                            subscription_id,
-                            increment_id)
-```
-
-#### Parameters
-
-| Parameter | Tags | Description |
-|-----------|------|-------------|
-| subscriptionId |  ``` Required ```  | The subscription Id |
-| incrementId |  ``` Required ```  | The increment Id |
-
-
-
-#### Example Usage
-
-```python
-subscription_id = 'subscription_id'
-increment_id = 'increment_id'
-
-result = subscriptions_controller.get_increment_by_id(subscription_id, increment_id)
-
-```
-
-
 ### <a name="get_discounts"></a>![Method: ](https://apidocs.io/img/method.png ".SubscriptionsController.get_discounts") get_discounts
 
 > TODO: Add a method description
@@ -1197,8 +1227,8 @@ def get_discounts(self,
 
 ```python
 subscription_id = 'subscription_id'
-page = 117
-size = 117
+page = 149
+size = 149
 
 result = subscriptions_controller.get_discounts(subscription_id, page, size)
 
@@ -1296,8 +1326,8 @@ def get_increments(self,
 
 ```python
 subscription_id = 'subscription_id'
-page = 117
-size = 117
+page = 240
+size = 240
 
 result = subscriptions_controller.get_increments(subscription_id, page, size)
 
@@ -1502,8 +1532,8 @@ def get_usages(self,
 ```python
 subscription_id = 'subscription_id'
 item_id = 'item_id'
-page = 117
-size = 117
+page = 240
+size = 240
 code = 'code'
 group = 'group'
 used_since = datetime.now()
@@ -1610,36 +1640,6 @@ result = subscriptions_controller.get_subscription_cycle_by_id(subscription_id, 
 ```
 
 
-### <a name="renew_subscription"></a>![Method: ](https://apidocs.io/img/method.png ".SubscriptionsController.renew_subscription") renew_subscription
-
-> TODO: Add a method description
-
-```python
-def renew_subscription(self,
-                           subscription_id,
-                           idempotency_key=None)
-```
-
-#### Parameters
-
-| Parameter | Tags | Description |
-|-----------|------|-------------|
-| subscriptionId |  ``` Required ```  | TODO: Add a parameter description |
-| idempotencyKey |  ``` Optional ```  | TODO: Add a parameter description |
-
-
-
-#### Example Usage
-
-```python
-subscription_id = 'subscription_id'
-idempotency_key = 'idempotency-key'
-
-result = subscriptions_controller.renew_subscription(subscription_id, idempotency_key)
-
-```
-
-
 ### <a name="get_usage_report"></a>![Method: ](https://apidocs.io/img/method.png ".SubscriptionsController.get_usage_report") get_usage_report
 
 > TODO: Add a method description
@@ -1666,6 +1666,261 @@ subscription_id = 'subscription_id'
 period_id = 'period_id'
 
 result = subscriptions_controller.get_usage_report(subscription_id, period_id)
+
+```
+
+
+[Back to List of Controllers](#list_of_controllers)
+
+## <a name="invoices_controller"></a>![Class: ](https://apidocs.io/img/class.png ".InvoicesController") InvoicesController
+
+### Get controller instance
+
+An instance of the ``` InvoicesController ``` class can be accessed from the API Client.
+
+```python
+ invoices_controller = client.invoices
+```
+
+### <a name="update_invoice_metadata"></a>![Method: ](https://apidocs.io/img/method.png ".InvoicesController.update_invoice_metadata") update_invoice_metadata
+
+> Updates the metadata from an invoice
+
+```python
+def update_invoice_metadata(self,
+                                invoice_id,
+                                request,
+                                idempotency_key=None)
+```
+
+#### Parameters
+
+| Parameter | Tags | Description |
+|-----------|------|-------------|
+| invoiceId |  ``` Required ```  | The invoice id |
+| request |  ``` Required ```  | Request for updating the invoice metadata |
+| idempotencyKey |  ``` Optional ```  | TODO: Add a parameter description |
+
+
+
+#### Example Usage
+
+```python
+invoice_id = 'invoice_id'
+request = UpdateMetadataRequest()
+idempotency_key = 'idempotency-key'
+
+result = invoices_controller.update_invoice_metadata(invoice_id, request, idempotency_key)
+
+```
+
+
+### <a name="get_partial_invoice"></a>![Method: ](https://apidocs.io/img/method.png ".InvoicesController.get_partial_invoice") get_partial_invoice
+
+> TODO: Add a method description
+
+```python
+def get_partial_invoice(self,
+                            subscription_id)
+```
+
+#### Parameters
+
+| Parameter | Tags | Description |
+|-----------|------|-------------|
+| subscriptionId |  ``` Required ```  | Subscription Id |
+
+
+
+#### Example Usage
+
+```python
+subscription_id = 'subscription_id'
+
+result = invoices_controller.get_partial_invoice(subscription_id)
+
+```
+
+
+### <a name="cancel_invoice"></a>![Method: ](https://apidocs.io/img/method.png ".InvoicesController.cancel_invoice") cancel_invoice
+
+> Cancels an invoice
+
+```python
+def cancel_invoice(self,
+                       invoice_id,
+                       idempotency_key=None)
+```
+
+#### Parameters
+
+| Parameter | Tags | Description |
+|-----------|------|-------------|
+| invoiceId |  ``` Required ```  | Invoice id |
+| idempotencyKey |  ``` Optional ```  | TODO: Add a parameter description |
+
+
+
+#### Example Usage
+
+```python
+invoice_id = 'invoice_id'
+idempotency_key = 'idempotency-key'
+
+result = invoices_controller.cancel_invoice(invoice_id, idempotency_key)
+
+```
+
+
+### <a name="create_invoice"></a>![Method: ](https://apidocs.io/img/method.png ".InvoicesController.create_invoice") create_invoice
+
+> Create an Invoice
+
+```python
+def create_invoice(self,
+                       subscription_id,
+                       cycle_id,
+                       request=None,
+                       idempotency_key=None)
+```
+
+#### Parameters
+
+| Parameter | Tags | Description |
+|-----------|------|-------------|
+| subscriptionId |  ``` Required ```  | Subscription Id |
+| cycleId |  ``` Required ```  | Cycle Id |
+| request |  ``` Optional ```  | TODO: Add a parameter description |
+| idempotencyKey |  ``` Optional ```  | TODO: Add a parameter description |
+
+
+
+#### Example Usage
+
+```python
+subscription_id = 'subscription_id'
+cycle_id = 'cycle_id'
+request = CreateInvoiceRequest()
+idempotency_key = 'idempotency-key'
+
+result = invoices_controller.create_invoice(subscription_id, cycle_id, request, idempotency_key)
+
+```
+
+
+### <a name="get_invoices"></a>![Method: ](https://apidocs.io/img/method.png ".InvoicesController.get_invoices") get_invoices
+
+> Gets all invoices
+
+```python
+def get_invoices(self,
+                     page=None,
+                     size=None,
+                     code=None,
+                     customer_id=None,
+                     subscription_id=None,
+                     created_since=None,
+                     created_until=None,
+                     status=None,
+                     due_since=None,
+                     due_until=None,
+                     customer_document=None)
+```
+
+#### Parameters
+
+| Parameter | Tags | Description |
+|-----------|------|-------------|
+| page |  ``` Optional ```  | Page number |
+| size |  ``` Optional ```  | Page size |
+| code |  ``` Optional ```  | Filter for Invoice's code |
+| customerId |  ``` Optional ```  | Filter for Invoice's customer id |
+| subscriptionId |  ``` Optional ```  | Filter for Invoice's subscription id |
+| createdSince |  ``` Optional ```  | Filter for Invoice's creation date start range |
+| createdUntil |  ``` Optional ```  | Filter for Invoices creation date end range |
+| status |  ``` Optional ```  | Filter for Invoice's status |
+| dueSince |  ``` Optional ```  | Filter for Invoice's due date start range |
+| dueUntil |  ``` Optional ```  | Filter for Invoice's due date end range |
+| customerDocument |  ``` Optional ```  | TODO: Add a parameter description |
+
+
+
+#### Example Usage
+
+```python
+page = 240
+size = 240
+code = 'code'
+customer_id = 'customer_id'
+subscription_id = 'subscription_id'
+created_since = datetime.now()
+created_until = datetime.now()
+status = 'status'
+due_since = datetime.now()
+due_until = datetime.now()
+customer_document = 'customer_document'
+
+result = invoices_controller.get_invoices(page, size, code, customer_id, subscription_id, created_since, created_until, status, due_since, due_until, customer_document)
+
+```
+
+
+### <a name="get_invoice"></a>![Method: ](https://apidocs.io/img/method.png ".InvoicesController.get_invoice") get_invoice
+
+> Gets an invoice
+
+```python
+def get_invoice(self,
+                    invoice_id)
+```
+
+#### Parameters
+
+| Parameter | Tags | Description |
+|-----------|------|-------------|
+| invoiceId |  ``` Required ```  | Invoice Id |
+
+
+
+#### Example Usage
+
+```python
+invoice_id = 'invoice_id'
+
+result = invoices_controller.get_invoice(invoice_id)
+
+```
+
+
+### <a name="update_invoice_status"></a>![Method: ](https://apidocs.io/img/method.png ".InvoicesController.update_invoice_status") update_invoice_status
+
+> Updates the status from an invoice
+
+```python
+def update_invoice_status(self,
+                              invoice_id,
+                              request,
+                              idempotency_key=None)
+```
+
+#### Parameters
+
+| Parameter | Tags | Description |
+|-----------|------|-------------|
+| invoiceId |  ``` Required ```  | Invoice Id |
+| request |  ``` Required ```  | Request for updating an invoice's status |
+| idempotencyKey |  ``` Optional ```  | TODO: Add a parameter description |
+
+
+
+#### Example Usage
+
+```python
+invoice_id = 'invoice_id'
+request = UpdateInvoiceStatusRequest()
+idempotency_key = 'idempotency-key'
+
+result = invoices_controller.update_invoice_status(invoice_id, request, idempotency_key)
 
 ```
 
@@ -1714,8 +1969,8 @@ def get_orders(self,
 #### Example Usage
 
 ```python
-page = 117
-size = 117
+page = 240
+size = 240
 code = 'code'
 status = 'status'
 created_since = datetime.now()
@@ -1723,36 +1978,6 @@ created_until = datetime.now()
 customer_id = 'customer_id'
 
 result = orders_controller.get_orders(page, size, code, status, created_since, created_until, customer_id)
-
-```
-
-
-### <a name="delete_all_order_items"></a>![Method: ](https://apidocs.io/img/method.png ".OrdersController.delete_all_order_items") delete_all_order_items
-
-> TODO: Add a method description
-
-```python
-def delete_all_order_items(self,
-                               order_id,
-                               idempotency_key=None)
-```
-
-#### Parameters
-
-| Parameter | Tags | Description |
-|-----------|------|-------------|
-| orderId |  ``` Required ```  | Order Id |
-| idempotencyKey |  ``` Optional ```  | TODO: Add a parameter description |
-
-
-
-#### Example Usage
-
-```python
-order_id = 'orderId'
-idempotency_key = 'idempotency-key'
-
-result = orders_controller.delete_all_order_items(order_id, idempotency_key)
 
 ```
 
@@ -1789,6 +2014,36 @@ request = UpdateOrderItemRequest()
 idempotency_key = 'idempotency-key'
 
 result = orders_controller.update_order_item(order_id, item_id, request, idempotency_key)
+
+```
+
+
+### <a name="delete_all_order_items"></a>![Method: ](https://apidocs.io/img/method.png ".OrdersController.delete_all_order_items") delete_all_order_items
+
+> TODO: Add a method description
+
+```python
+def delete_all_order_items(self,
+                               order_id,
+                               idempotency_key=None)
+```
+
+#### Parameters
+
+| Parameter | Tags | Description |
+|-----------|------|-------------|
+| orderId |  ``` Required ```  | Order Id |
+| idempotencyKey |  ``` Optional ```  | TODO: Add a parameter description |
+
+
+
+#### Example Usage
+
+```python
+order_id = 'orderId'
+idempotency_key = 'idempotency-key'
+
+result = orders_controller.delete_all_order_items(order_id, idempotency_key)
 
 ```
 
@@ -2014,261 +2269,6 @@ result = orders_controller.get_order(order_id)
 
 [Back to List of Controllers](#list_of_controllers)
 
-## <a name="invoices_controller"></a>![Class: ](https://apidocs.io/img/class.png ".InvoicesController") InvoicesController
-
-### Get controller instance
-
-An instance of the ``` InvoicesController ``` class can be accessed from the API Client.
-
-```python
- invoices_controller = client.invoices
-```
-
-### <a name="get_partial_invoice"></a>![Method: ](https://apidocs.io/img/method.png ".InvoicesController.get_partial_invoice") get_partial_invoice
-
-> TODO: Add a method description
-
-```python
-def get_partial_invoice(self,
-                            subscription_id)
-```
-
-#### Parameters
-
-| Parameter | Tags | Description |
-|-----------|------|-------------|
-| subscriptionId |  ``` Required ```  | Subscription Id |
-
-
-
-#### Example Usage
-
-```python
-subscription_id = 'subscription_id'
-
-result = invoices_controller.get_partial_invoice(subscription_id)
-
-```
-
-
-### <a name="cancel_invoice"></a>![Method: ](https://apidocs.io/img/method.png ".InvoicesController.cancel_invoice") cancel_invoice
-
-> Cancels an invoice
-
-```python
-def cancel_invoice(self,
-                       invoice_id,
-                       idempotency_key=None)
-```
-
-#### Parameters
-
-| Parameter | Tags | Description |
-|-----------|------|-------------|
-| invoiceId |  ``` Required ```  | Invoice id |
-| idempotencyKey |  ``` Optional ```  | TODO: Add a parameter description |
-
-
-
-#### Example Usage
-
-```python
-invoice_id = 'invoice_id'
-idempotency_key = 'idempotency-key'
-
-result = invoices_controller.cancel_invoice(invoice_id, idempotency_key)
-
-```
-
-
-### <a name="create_invoice"></a>![Method: ](https://apidocs.io/img/method.png ".InvoicesController.create_invoice") create_invoice
-
-> Create an Invoice
-
-```python
-def create_invoice(self,
-                       subscription_id,
-                       cycle_id,
-                       request=None,
-                       idempotency_key=None)
-```
-
-#### Parameters
-
-| Parameter | Tags | Description |
-|-----------|------|-------------|
-| subscriptionId |  ``` Required ```  | Subscription Id |
-| cycleId |  ``` Required ```  | Cycle Id |
-| request |  ``` Optional ```  | TODO: Add a parameter description |
-| idempotencyKey |  ``` Optional ```  | TODO: Add a parameter description |
-
-
-
-#### Example Usage
-
-```python
-subscription_id = 'subscription_id'
-cycle_id = 'cycle_id'
-request = CreateInvoiceRequest()
-idempotency_key = 'idempotency-key'
-
-result = invoices_controller.create_invoice(subscription_id, cycle_id, request, idempotency_key)
-
-```
-
-
-### <a name="update_invoice_metadata"></a>![Method: ](https://apidocs.io/img/method.png ".InvoicesController.update_invoice_metadata") update_invoice_metadata
-
-> Updates the metadata from an invoice
-
-```python
-def update_invoice_metadata(self,
-                                invoice_id,
-                                request,
-                                idempotency_key=None)
-```
-
-#### Parameters
-
-| Parameter | Tags | Description |
-|-----------|------|-------------|
-| invoiceId |  ``` Required ```  | The invoice id |
-| request |  ``` Required ```  | Request for updating the invoice metadata |
-| idempotencyKey |  ``` Optional ```  | TODO: Add a parameter description |
-
-
-
-#### Example Usage
-
-```python
-invoice_id = 'invoice_id'
-request = UpdateMetadataRequest()
-idempotency_key = 'idempotency-key'
-
-result = invoices_controller.update_invoice_metadata(invoice_id, request, idempotency_key)
-
-```
-
-
-### <a name="get_invoices"></a>![Method: ](https://apidocs.io/img/method.png ".InvoicesController.get_invoices") get_invoices
-
-> Gets all invoices
-
-```python
-def get_invoices(self,
-                     page=None,
-                     size=None,
-                     code=None,
-                     customer_id=None,
-                     subscription_id=None,
-                     created_since=None,
-                     created_until=None,
-                     status=None,
-                     due_since=None,
-                     due_until=None,
-                     customer_document=None)
-```
-
-#### Parameters
-
-| Parameter | Tags | Description |
-|-----------|------|-------------|
-| page |  ``` Optional ```  | Page number |
-| size |  ``` Optional ```  | Page size |
-| code |  ``` Optional ```  | Filter for Invoice's code |
-| customerId |  ``` Optional ```  | Filter for Invoice's customer id |
-| subscriptionId |  ``` Optional ```  | Filter for Invoice's subscription id |
-| createdSince |  ``` Optional ```  | Filter for Invoice's creation date start range |
-| createdUntil |  ``` Optional ```  | Filter for Invoices creation date end range |
-| status |  ``` Optional ```  | Filter for Invoice's status |
-| dueSince |  ``` Optional ```  | Filter for Invoice's due date start range |
-| dueUntil |  ``` Optional ```  | Filter for Invoice's due date end range |
-| customerDocument |  ``` Optional ```  | TODO: Add a parameter description |
-
-
-
-#### Example Usage
-
-```python
-page = 75
-size = 75
-code = 'code'
-customer_id = 'customer_id'
-subscription_id = 'subscription_id'
-created_since = datetime.now()
-created_until = datetime.now()
-status = 'status'
-due_since = datetime.now()
-due_until = datetime.now()
-customer_document = 'customer_document'
-
-result = invoices_controller.get_invoices(page, size, code, customer_id, subscription_id, created_since, created_until, status, due_since, due_until, customer_document)
-
-```
-
-
-### <a name="get_invoice"></a>![Method: ](https://apidocs.io/img/method.png ".InvoicesController.get_invoice") get_invoice
-
-> Gets an invoice
-
-```python
-def get_invoice(self,
-                    invoice_id)
-```
-
-#### Parameters
-
-| Parameter | Tags | Description |
-|-----------|------|-------------|
-| invoiceId |  ``` Required ```  | Invoice Id |
-
-
-
-#### Example Usage
-
-```python
-invoice_id = 'invoice_id'
-
-result = invoices_controller.get_invoice(invoice_id)
-
-```
-
-
-### <a name="update_invoice_status"></a>![Method: ](https://apidocs.io/img/method.png ".InvoicesController.update_invoice_status") update_invoice_status
-
-> Updates the status from an invoice
-
-```python
-def update_invoice_status(self,
-                              invoice_id,
-                              request,
-                              idempotency_key=None)
-```
-
-#### Parameters
-
-| Parameter | Tags | Description |
-|-----------|------|-------------|
-| invoiceId |  ``` Required ```  | Invoice Id |
-| request |  ``` Required ```  | Request for updating an invoice's status |
-| idempotencyKey |  ``` Optional ```  | TODO: Add a parameter description |
-
-
-
-#### Example Usage
-
-```python
-invoice_id = 'invoice_id'
-request = UpdateInvoiceStatusRequest()
-idempotency_key = 'idempotency-key'
-
-result = invoices_controller.update_invoice_status(invoice_id, request, idempotency_key)
-
-```
-
-
-[Back to List of Controllers](#list_of_controllers)
-
 ## <a name="customers_controller"></a>![Class: ](https://apidocs.io/img/class.png ".CustomersController") CustomersController
 
 ### Get controller instance
@@ -2384,23 +2384,21 @@ result = customers_controller.delete_access_token(customer_id, token_id, idempot
 ```
 
 
-### <a name="create_access_token"></a>![Method: ](https://apidocs.io/img/method.png ".CustomersController.create_access_token") create_access_token
+### <a name="create_customer"></a>![Method: ](https://apidocs.io/img/method.png ".CustomersController.create_customer") create_customer
 
-> Creates a access token for a customer
+> Creates a new customer
 
 ```python
-def create_access_token(self,
-                            customer_id,
-                            request,
-                            idempotency_key=None)
+def create_customer(self,
+                        request,
+                        idempotency_key=None)
 ```
 
 #### Parameters
 
 | Parameter | Tags | Description |
 |-----------|------|-------------|
-| customerId |  ``` Required ```  | Customer Id |
-| request |  ``` Required ```  | Request for creating a access token |
+| request |  ``` Required ```  | Request for creating a customer |
 | idempotencyKey |  ``` Optional ```  | TODO: Add a parameter description |
 
 
@@ -2408,11 +2406,10 @@ def create_access_token(self,
 #### Example Usage
 
 ```python
-customer_id = 'customer_id'
-request = CreateAccessTokenRequest()
+request = CreateCustomerRequest()
 idempotency_key = 'idempotency-key'
 
-result = customers_controller.create_access_token(customer_id, request, idempotency_key)
+result = customers_controller.create_customer(request, idempotency_key)
 
 ```
 
@@ -2446,36 +2443,6 @@ request = CreateAddressRequest()
 idempotency_key = 'idempotency-key'
 
 result = customers_controller.create_address(customer_id, request, idempotency_key)
-
-```
-
-
-### <a name="create_customer"></a>![Method: ](https://apidocs.io/img/method.png ".CustomersController.create_customer") create_customer
-
-> Creates a new customer
-
-```python
-def create_customer(self,
-                        request,
-                        idempotency_key=None)
-```
-
-#### Parameters
-
-| Parameter | Tags | Description |
-|-----------|------|-------------|
-| request |  ``` Required ```  | Request for creating a customer |
-| idempotencyKey |  ``` Optional ```  | TODO: Add a parameter description |
-
-
-
-#### Example Usage
-
-```python
-request = CreateCustomerRequest()
-idempotency_key = 'idempotency-key'
-
-result = customers_controller.create_customer(request, idempotency_key)
 
 ```
 
@@ -2678,6 +2645,39 @@ result = customers_controller.update_customer(customer_id, request, idempotency_
 ```
 
 
+### <a name="create_access_token"></a>![Method: ](https://apidocs.io/img/method.png ".CustomersController.create_access_token") create_access_token
+
+> Creates a access token for a customer
+
+```python
+def create_access_token(self,
+                            customer_id,
+                            request,
+                            idempotency_key=None)
+```
+
+#### Parameters
+
+| Parameter | Tags | Description |
+|-----------|------|-------------|
+| customerId |  ``` Required ```  | Customer Id |
+| request |  ``` Required ```  | Request for creating a access token |
+| idempotencyKey |  ``` Optional ```  | TODO: Add a parameter description |
+
+
+
+#### Example Usage
+
+```python
+customer_id = 'customer_id'
+request = CreateAccessTokenRequest()
+idempotency_key = 'idempotency-key'
+
+result = customers_controller.create_access_token(customer_id, request, idempotency_key)
+
+```
+
+
 ### <a name="get_access_tokens"></a>![Method: ](https://apidocs.io/img/method.png ".CustomersController.get_access_tokens") get_access_tokens
 
 > Get all access tokens from a customer
@@ -2703,8 +2703,8 @@ def get_access_tokens(self,
 
 ```python
 customer_id = 'customer_id'
-page = 75
-size = 75
+page = 77
+size = 77
 
 result = customers_controller.get_access_tokens(customer_id, page, size)
 
@@ -2736,8 +2736,8 @@ def get_cards(self,
 
 ```python
 customer_id = 'customer_id'
-page = 75
-size = 75
+page = 77
+size = 77
 
 result = customers_controller.get_cards(customer_id, page, size)
 
@@ -2898,8 +2898,8 @@ def get_addresses(self,
 
 ```python
 customer_id = 'customer_id'
-page = 167
-size = 167
+page = 77
+size = 77
 
 result = customers_controller.get_addresses(customer_id, page, size)
 
@@ -2965,6 +2965,678 @@ result = customers_controller.get_card(customer_id, card_id)
 
 [Back to List of Controllers](#list_of_controllers)
 
+## <a name="recipients_controller"></a>![Class: ](https://apidocs.io/img/class.png ".RecipientsController") RecipientsController
+
+### Get controller instance
+
+An instance of the ``` RecipientsController ``` class can be accessed from the API Client.
+
+```python
+ recipients_controller = client.recipients
+```
+
+### <a name="update_recipient"></a>![Method: ](https://apidocs.io/img/method.png ".RecipientsController.update_recipient") update_recipient
+
+> Updates a recipient
+
+```python
+def update_recipient(self,
+                         recipient_id,
+                         request,
+                         idempotency_key=None)
+```
+
+#### Parameters
+
+| Parameter | Tags | Description |
+|-----------|------|-------------|
+| recipientId |  ``` Required ```  | Recipient id |
+| request |  ``` Required ```  | Recipient data |
+| idempotencyKey |  ``` Optional ```  | TODO: Add a parameter description |
+
+
+
+#### Example Usage
+
+```python
+recipient_id = 'recipient_id'
+request = UpdateRecipientRequest()
+idempotency_key = 'idempotency-key'
+
+result = recipients_controller.update_recipient(recipient_id, request, idempotency_key)
+
+```
+
+
+### <a name="create_anticipation"></a>![Method: ](https://apidocs.io/img/method.png ".RecipientsController.create_anticipation") create_anticipation
+
+> Creates an anticipation
+
+```python
+def create_anticipation(self,
+                            recipient_id,
+                            request,
+                            idempotency_key=None)
+```
+
+#### Parameters
+
+| Parameter | Tags | Description |
+|-----------|------|-------------|
+| recipientId |  ``` Required ```  | Recipient id |
+| request |  ``` Required ```  | Anticipation data |
+| idempotencyKey |  ``` Optional ```  | TODO: Add a parameter description |
+
+
+
+#### Example Usage
+
+```python
+recipient_id = 'recipient_id'
+request = CreateAnticipationRequest()
+idempotency_key = 'idempotency-key'
+
+result = recipients_controller.create_anticipation(recipient_id, request, idempotency_key)
+
+```
+
+
+### <a name="get_anticipation_limits"></a>![Method: ](https://apidocs.io/img/method.png ".RecipientsController.get_anticipation_limits") get_anticipation_limits
+
+> Gets the anticipation limits for a recipient
+
+```python
+def get_anticipation_limits(self,
+                                recipient_id,
+                                timeframe,
+                                payment_date)
+```
+
+#### Parameters
+
+| Parameter | Tags | Description |
+|-----------|------|-------------|
+| recipientId |  ``` Required ```  | Recipient id |
+| timeframe |  ``` Required ```  | Timeframe |
+| paymentDate |  ``` Required ```  | Anticipation payment date |
+
+
+
+#### Example Usage
+
+```python
+recipient_id = 'recipient_id'
+timeframe = 'timeframe'
+payment_date = datetime.now()
+
+result = recipients_controller.get_anticipation_limits(recipient_id, timeframe, payment_date)
+
+```
+
+
+### <a name="get_recipients"></a>![Method: ](https://apidocs.io/img/method.png ".RecipientsController.get_recipients") get_recipients
+
+> Retrieves paginated recipients information
+
+```python
+def get_recipients(self,
+                       page=None,
+                       size=None)
+```
+
+#### Parameters
+
+| Parameter | Tags | Description |
+|-----------|------|-------------|
+| page |  ``` Optional ```  | Page number |
+| size |  ``` Optional ```  | Page size |
+
+
+
+#### Example Usage
+
+```python
+page = 77
+size = 77
+
+result = recipients_controller.get_recipients(page, size)
+
+```
+
+
+### <a name="get_withdraw_by_id"></a>![Method: ](https://apidocs.io/img/method.png ".RecipientsController.get_withdraw_by_id") get_withdraw_by_id
+
+> TODO: Add a method description
+
+```python
+def get_withdraw_by_id(self,
+                           recipient_id,
+                           withdrawal_id)
+```
+
+#### Parameters
+
+| Parameter | Tags | Description |
+|-----------|------|-------------|
+| recipientId |  ``` Required ```  | TODO: Add a parameter description |
+| withdrawalId |  ``` Required ```  | TODO: Add a parameter description |
+
+
+
+#### Example Usage
+
+```python
+recipient_id = 'recipient_id'
+withdrawal_id = 'withdrawal_id'
+
+result = recipients_controller.get_withdraw_by_id(recipient_id, withdrawal_id)
+
+```
+
+
+### <a name="update_recipient_default_bank_account"></a>![Method: ](https://apidocs.io/img/method.png ".RecipientsController.update_recipient_default_bank_account") update_recipient_default_bank_account
+
+> Updates the default bank account from a recipient
+
+```python
+def update_recipient_default_bank_account(self,
+                                              recipient_id,
+                                              request,
+                                              idempotency_key=None)
+```
+
+#### Parameters
+
+| Parameter | Tags | Description |
+|-----------|------|-------------|
+| recipientId |  ``` Required ```  | Recipient id |
+| request |  ``` Required ```  | Bank account data |
+| idempotencyKey |  ``` Optional ```  | TODO: Add a parameter description |
+
+
+
+#### Example Usage
+
+```python
+recipient_id = 'recipient_id'
+request = UpdateRecipientBankAccountRequest()
+idempotency_key = 'idempotency-key'
+
+result = recipients_controller.update_recipient_default_bank_account(recipient_id, request, idempotency_key)
+
+```
+
+
+### <a name="update_recipient_metadata"></a>![Method: ](https://apidocs.io/img/method.png ".RecipientsController.update_recipient_metadata") update_recipient_metadata
+
+> Updates recipient metadata
+
+```python
+def update_recipient_metadata(self,
+                                  recipient_id,
+                                  request,
+                                  idempotency_key=None)
+```
+
+#### Parameters
+
+| Parameter | Tags | Description |
+|-----------|------|-------------|
+| recipientId |  ``` Required ```  | Recipient id |
+| request |  ``` Required ```  | Metadata |
+| idempotencyKey |  ``` Optional ```  | TODO: Add a parameter description |
+
+
+
+#### Example Usage
+
+```python
+recipient_id = 'recipient_id'
+request = UpdateMetadataRequest()
+idempotency_key = 'idempotency-key'
+
+result = recipients_controller.update_recipient_metadata(recipient_id, request, idempotency_key)
+
+```
+
+
+### <a name="get_transfers"></a>![Method: ](https://apidocs.io/img/method.png ".RecipientsController.get_transfers") get_transfers
+
+> Gets a paginated list of transfers for the recipient
+
+```python
+def get_transfers(self,
+                      recipient_id,
+                      page=None,
+                      size=None,
+                      status=None,
+                      created_since=None,
+                      created_until=None)
+```
+
+#### Parameters
+
+| Parameter | Tags | Description |
+|-----------|------|-------------|
+| recipientId |  ``` Required ```  | Recipient id |
+| page |  ``` Optional ```  | Page number |
+| size |  ``` Optional ```  | Page size |
+| status |  ``` Optional ```  | Filter for transfer status |
+| createdSince |  ``` Optional ```  | Filter for start range of transfer creation date |
+| createdUntil |  ``` Optional ```  | Filter for end range of transfer creation date |
+
+
+
+#### Example Usage
+
+```python
+recipient_id = 'recipient_id'
+page = 77
+size = 77
+status = 'status'
+created_since = datetime.now()
+created_until = datetime.now()
+
+result = recipients_controller.get_transfers(recipient_id, page, size, status, created_since, created_until)
+
+```
+
+
+### <a name="get_transfer"></a>![Method: ](https://apidocs.io/img/method.png ".RecipientsController.get_transfer") get_transfer
+
+> Gets a transfer
+
+```python
+def get_transfer(self,
+                     recipient_id,
+                     transfer_id)
+```
+
+#### Parameters
+
+| Parameter | Tags | Description |
+|-----------|------|-------------|
+| recipientId |  ``` Required ```  | Recipient id |
+| transferId |  ``` Required ```  | Transfer id |
+
+
+
+#### Example Usage
+
+```python
+recipient_id = 'recipient_id'
+transfer_id = 'transfer_id'
+
+result = recipients_controller.get_transfer(recipient_id, transfer_id)
+
+```
+
+
+### <a name="create_withdraw"></a>![Method: ](https://apidocs.io/img/method.png ".RecipientsController.create_withdraw") create_withdraw
+
+> TODO: Add a method description
+
+```python
+def create_withdraw(self,
+                        recipient_id,
+                        request)
+```
+
+#### Parameters
+
+| Parameter | Tags | Description |
+|-----------|------|-------------|
+| recipientId |  ``` Required ```  | TODO: Add a parameter description |
+| request |  ``` Required ```  | TODO: Add a parameter description |
+
+
+
+#### Example Usage
+
+```python
+recipient_id = 'recipient_id'
+request = CreateWithdrawRequest()
+
+result = recipients_controller.create_withdraw(recipient_id, request)
+
+```
+
+
+### <a name="update_automatic_anticipation_settings"></a>![Method: ](https://apidocs.io/img/method.png ".RecipientsController.update_automatic_anticipation_settings") update_automatic_anticipation_settings
+
+> Updates recipient metadata
+
+```python
+def update_automatic_anticipation_settings(self,
+                                               recipient_id,
+                                               request,
+                                               idempotency_key=None)
+```
+
+#### Parameters
+
+| Parameter | Tags | Description |
+|-----------|------|-------------|
+| recipientId |  ``` Required ```  | Recipient id |
+| request |  ``` Required ```  | Metadata |
+| idempotencyKey |  ``` Optional ```  | TODO: Add a parameter description |
+
+
+
+#### Example Usage
+
+```python
+recipient_id = 'recipient_id'
+request = UpdateAutomaticAnticipationSettingsRequest()
+idempotency_key = 'idempotency-key'
+
+result = recipients_controller.update_automatic_anticipation_settings(recipient_id, request, idempotency_key)
+
+```
+
+
+### <a name="get_anticipation"></a>![Method: ](https://apidocs.io/img/method.png ".RecipientsController.get_anticipation") get_anticipation
+
+> Gets an anticipation
+
+```python
+def get_anticipation(self,
+                         recipient_id,
+                         anticipation_id)
+```
+
+#### Parameters
+
+| Parameter | Tags | Description |
+|-----------|------|-------------|
+| recipientId |  ``` Required ```  | Recipient id |
+| anticipationId |  ``` Required ```  | Anticipation id |
+
+
+
+#### Example Usage
+
+```python
+recipient_id = 'recipient_id'
+anticipation_id = 'anticipation_id'
+
+result = recipients_controller.get_anticipation(recipient_id, anticipation_id)
+
+```
+
+
+### <a name="update_recipient_transfer_settings"></a>![Method: ](https://apidocs.io/img/method.png ".RecipientsController.update_recipient_transfer_settings") update_recipient_transfer_settings
+
+> TODO: Add a method description
+
+```python
+def update_recipient_transfer_settings(self,
+                                           recipient_id,
+                                           request,
+                                           idempotency_key=None)
+```
+
+#### Parameters
+
+| Parameter | Tags | Description |
+|-----------|------|-------------|
+| recipientId |  ``` Required ```  | Recipient Identificator |
+| request |  ``` Required ```  | TODO: Add a parameter description |
+| idempotencyKey |  ``` Optional ```  | TODO: Add a parameter description |
+
+
+
+#### Example Usage
+
+```python
+recipient_id = 'recipient_id'
+request = UpdateTransferSettingsRequest()
+idempotency_key = 'idempotency-key'
+
+result = recipients_controller.update_recipient_transfer_settings(recipient_id, request, idempotency_key)
+
+```
+
+
+### <a name="get_anticipations"></a>![Method: ](https://apidocs.io/img/method.png ".RecipientsController.get_anticipations") get_anticipations
+
+> Retrieves a paginated list of anticipations from a recipient
+
+```python
+def get_anticipations(self,
+                          recipient_id,
+                          page=None,
+                          size=None,
+                          status=None,
+                          timeframe=None,
+                          payment_date_since=None,
+                          payment_date_until=None,
+                          created_since=None,
+                          created_until=None)
+```
+
+#### Parameters
+
+| Parameter | Tags | Description |
+|-----------|------|-------------|
+| recipientId |  ``` Required ```  | Recipient id |
+| page |  ``` Optional ```  | Page number |
+| size |  ``` Optional ```  | Page size |
+| status |  ``` Optional ```  | Filter for anticipation status |
+| timeframe |  ``` Optional ```  | Filter for anticipation timeframe |
+| paymentDateSince |  ``` Optional ```  | Filter for start range for anticipation payment date |
+| paymentDateUntil |  ``` Optional ```  | Filter for end range for anticipation payment date |
+| createdSince |  ``` Optional ```  | Filter for start range for anticipation creation date |
+| createdUntil |  ``` Optional ```  | Filter for end range for anticipation creation date |
+
+
+
+#### Example Usage
+
+```python
+recipient_id = 'recipient_id'
+page = 77
+size = 77
+status = 'status'
+timeframe = 'timeframe'
+payment_date_since = datetime.now()
+payment_date_until = datetime.now()
+created_since = datetime.now()
+created_until = datetime.now()
+
+result = recipients_controller.get_anticipations(recipient_id, page, size, status, timeframe, payment_date_since, payment_date_until, created_since, created_until)
+
+```
+
+
+### <a name="get_recipient"></a>![Method: ](https://apidocs.io/img/method.png ".RecipientsController.get_recipient") get_recipient
+
+> Retrieves recipient information
+
+```python
+def get_recipient(self,
+                      recipient_id)
+```
+
+#### Parameters
+
+| Parameter | Tags | Description |
+|-----------|------|-------------|
+| recipientId |  ``` Required ```  | Recipiend id |
+
+
+
+#### Example Usage
+
+```python
+recipient_id = 'recipient_id'
+
+result = recipients_controller.get_recipient(recipient_id)
+
+```
+
+
+### <a name="get_balance"></a>![Method: ](https://apidocs.io/img/method.png ".RecipientsController.get_balance") get_balance
+
+> Get balance information for a recipient
+
+```python
+def get_balance(self,
+                    recipient_id)
+```
+
+#### Parameters
+
+| Parameter | Tags | Description |
+|-----------|------|-------------|
+| recipientId |  ``` Required ```  | Recipient id |
+
+
+
+#### Example Usage
+
+```python
+recipient_id = 'recipient_id'
+
+result = recipients_controller.get_balance(recipient_id)
+
+```
+
+
+### <a name="get_withdrawals"></a>![Method: ](https://apidocs.io/img/method.png ".RecipientsController.get_withdrawals") get_withdrawals
+
+> Gets a paginated list of transfers for the recipient
+
+```python
+def get_withdrawals(self,
+                        recipient_id,
+                        page=None,
+                        size=None,
+                        status=None,
+                        created_since=None,
+                        created_until=None)
+```
+
+#### Parameters
+
+| Parameter | Tags | Description |
+|-----------|------|-------------|
+| recipientId |  ``` Required ```  | TODO: Add a parameter description |
+| page |  ``` Optional ```  | TODO: Add a parameter description |
+| size |  ``` Optional ```  | TODO: Add a parameter description |
+| status |  ``` Optional ```  | TODO: Add a parameter description |
+| createdSince |  ``` Optional ```  | TODO: Add a parameter description |
+| createdUntil |  ``` Optional ```  | TODO: Add a parameter description |
+
+
+
+#### Example Usage
+
+```python
+recipient_id = 'recipient_id'
+page = 77
+size = 77
+status = 'status'
+created_since = datetime.now()
+created_until = datetime.now()
+
+result = recipients_controller.get_withdrawals(recipient_id, page, size, status, created_since, created_until)
+
+```
+
+
+### <a name="create_transfer"></a>![Method: ](https://apidocs.io/img/method.png ".RecipientsController.create_transfer") create_transfer
+
+> Creates a transfer for a recipient
+
+```python
+def create_transfer(self,
+                        recipient_id,
+                        request,
+                        idempotency_key=None)
+```
+
+#### Parameters
+
+| Parameter | Tags | Description |
+|-----------|------|-------------|
+| recipientId |  ``` Required ```  | Recipient Id |
+| request |  ``` Required ```  | Transfer data |
+| idempotencyKey |  ``` Optional ```  | TODO: Add a parameter description |
+
+
+
+#### Example Usage
+
+```python
+recipient_id = 'recipient_id'
+request = CreateTransferRequest()
+idempotency_key = 'idempotency-key'
+
+result = recipients_controller.create_transfer(recipient_id, request, idempotency_key)
+
+```
+
+
+### <a name="create_recipient"></a>![Method: ](https://apidocs.io/img/method.png ".RecipientsController.create_recipient") create_recipient
+
+> Creates a new recipient
+
+```python
+def create_recipient(self,
+                         request,
+                         idempotency_key=None)
+```
+
+#### Parameters
+
+| Parameter | Tags | Description |
+|-----------|------|-------------|
+| request |  ``` Required ```  | Recipient data |
+| idempotencyKey |  ``` Optional ```  | TODO: Add a parameter description |
+
+
+
+#### Example Usage
+
+```python
+request = CreateRecipientRequest()
+idempotency_key = 'idempotency-key'
+
+result = recipients_controller.create_recipient(request, idempotency_key)
+
+```
+
+
+### <a name="get_recipient_by_code"></a>![Method: ](https://apidocs.io/img/method.png ".RecipientsController.get_recipient_by_code") get_recipient_by_code
+
+> Retrieves recipient information
+
+```python
+def get_recipient_by_code(self,
+                              code)
+```
+
+#### Parameters
+
+| Parameter | Tags | Description |
+|-----------|------|-------------|
+| code |  ``` Required ```  | Recipient code |
+
+
+
+#### Example Usage
+
+```python
+code = 'code'
+
+result = recipients_controller.get_recipient_by_code(code)
+
+```
+
+
+[Back to List of Controllers](#list_of_controllers)
+
 ## <a name="charges_controller"></a>![Class: ](https://apidocs.io/img/class.png ".ChargesController") ChargesController
 
 ### Get controller instance
@@ -3004,39 +3676,6 @@ request = UpdateMetadataRequest()
 idempotency_key = 'idempotency-key'
 
 result = charges_controller.update_charge_metadata(charge_id, request, idempotency_key)
-
-```
-
-
-### <a name="capture_charge"></a>![Method: ](https://apidocs.io/img/method.png ".ChargesController.capture_charge") capture_charge
-
-> Captures a charge
-
-```python
-def capture_charge(self,
-                       charge_id,
-                       request=None,
-                       idempotency_key=None)
-```
-
-#### Parameters
-
-| Parameter | Tags | Description |
-|-----------|------|-------------|
-| chargeId |  ``` Required ```  | Charge id |
-| request |  ``` Optional ```  | Request for capturing a charge |
-| idempotencyKey |  ``` Optional ```  | TODO: Add a parameter description |
-
-
-
-#### Example Usage
-
-```python
-charge_id = 'charge_id'
-request = CreateCaptureChargeRequest()
-idempotency_key = 'idempotency-key'
-
-result = charges_controller.capture_charge(charge_id, request, idempotency_key)
 
 ```
 
@@ -3099,8 +3738,8 @@ def get_charge_transactions(self,
 
 ```python
 charge_id = 'charge_id'
-page = 167
-size = 167
+page = 77
+size = 77
 
 result = charges_controller.get_charge_transactions(charge_id, page, size)
 
@@ -3176,8 +3815,8 @@ def get_charges(self,
 #### Example Usage
 
 ```python
-page = 167
-size = 167
+page = 77
+size = 77
 code = 'code'
 status = 'status'
 payment_method = 'payment_method'
@@ -3187,6 +3826,39 @@ created_since = datetime.now()
 created_until = datetime.now()
 
 result = charges_controller.get_charges(page, size, code, status, payment_method, customer_id, order_id, created_since, created_until)
+
+```
+
+
+### <a name="capture_charge"></a>![Method: ](https://apidocs.io/img/method.png ".ChargesController.capture_charge") capture_charge
+
+> Captures a charge
+
+```python
+def capture_charge(self,
+                       charge_id,
+                       request=None,
+                       idempotency_key=None)
+```
+
+#### Parameters
+
+| Parameter | Tags | Description |
+|-----------|------|-------------|
+| chargeId |  ``` Required ```  | Charge id |
+| request |  ``` Optional ```  | Request for capturing a charge |
+| idempotencyKey |  ``` Optional ```  | TODO: Add a parameter description |
+
+
+
+#### Example Usage
+
+```python
+charge_id = 'charge_id'
+request = CreateCaptureChargeRequest()
+idempotency_key = 'idempotency-key'
+
+result = charges_controller.capture_charge(charge_id, request, idempotency_key)
 
 ```
 
@@ -3495,678 +4167,6 @@ result = transfers_controller.get_transfers()
 
 [Back to List of Controllers](#list_of_controllers)
 
-## <a name="recipients_controller"></a>![Class: ](https://apidocs.io/img/class.png ".RecipientsController") RecipientsController
-
-### Get controller instance
-
-An instance of the ``` RecipientsController ``` class can be accessed from the API Client.
-
-```python
- recipients_controller = client.recipients
-```
-
-### <a name="get_transfer"></a>![Method: ](https://apidocs.io/img/method.png ".RecipientsController.get_transfer") get_transfer
-
-> Gets a transfer
-
-```python
-def get_transfer(self,
-                     recipient_id,
-                     transfer_id)
-```
-
-#### Parameters
-
-| Parameter | Tags | Description |
-|-----------|------|-------------|
-| recipientId |  ``` Required ```  | Recipient id |
-| transferId |  ``` Required ```  | Transfer id |
-
-
-
-#### Example Usage
-
-```python
-recipient_id = 'recipient_id'
-transfer_id = 'transfer_id'
-
-result = recipients_controller.get_transfer(recipient_id, transfer_id)
-
-```
-
-
-### <a name="update_recipient"></a>![Method: ](https://apidocs.io/img/method.png ".RecipientsController.update_recipient") update_recipient
-
-> Updates a recipient
-
-```python
-def update_recipient(self,
-                         recipient_id,
-                         request,
-                         idempotency_key=None)
-```
-
-#### Parameters
-
-| Parameter | Tags | Description |
-|-----------|------|-------------|
-| recipientId |  ``` Required ```  | Recipient id |
-| request |  ``` Required ```  | Recipient data |
-| idempotencyKey |  ``` Optional ```  | TODO: Add a parameter description |
-
-
-
-#### Example Usage
-
-```python
-recipient_id = 'recipient_id'
-request = UpdateRecipientRequest()
-idempotency_key = 'idempotency-key'
-
-result = recipients_controller.update_recipient(recipient_id, request, idempotency_key)
-
-```
-
-
-### <a name="create_anticipation"></a>![Method: ](https://apidocs.io/img/method.png ".RecipientsController.create_anticipation") create_anticipation
-
-> Creates an anticipation
-
-```python
-def create_anticipation(self,
-                            recipient_id,
-                            request,
-                            idempotency_key=None)
-```
-
-#### Parameters
-
-| Parameter | Tags | Description |
-|-----------|------|-------------|
-| recipientId |  ``` Required ```  | Recipient id |
-| request |  ``` Required ```  | Anticipation data |
-| idempotencyKey |  ``` Optional ```  | TODO: Add a parameter description |
-
-
-
-#### Example Usage
-
-```python
-recipient_id = 'recipient_id'
-request = CreateAnticipationRequest()
-idempotency_key = 'idempotency-key'
-
-result = recipients_controller.create_anticipation(recipient_id, request, idempotency_key)
-
-```
-
-
-### <a name="get_anticipation_limits"></a>![Method: ](https://apidocs.io/img/method.png ".RecipientsController.get_anticipation_limits") get_anticipation_limits
-
-> Gets the anticipation limits for a recipient
-
-```python
-def get_anticipation_limits(self,
-                                recipient_id,
-                                timeframe,
-                                payment_date)
-```
-
-#### Parameters
-
-| Parameter | Tags | Description |
-|-----------|------|-------------|
-| recipientId |  ``` Required ```  | Recipient id |
-| timeframe |  ``` Required ```  | Timeframe |
-| paymentDate |  ``` Required ```  | Anticipation payment date |
-
-
-
-#### Example Usage
-
-```python
-recipient_id = 'recipient_id'
-timeframe = 'timeframe'
-payment_date = datetime.now()
-
-result = recipients_controller.get_anticipation_limits(recipient_id, timeframe, payment_date)
-
-```
-
-
-### <a name="get_recipients"></a>![Method: ](https://apidocs.io/img/method.png ".RecipientsController.get_recipients") get_recipients
-
-> Retrieves paginated recipients information
-
-```python
-def get_recipients(self,
-                       page=None,
-                       size=None)
-```
-
-#### Parameters
-
-| Parameter | Tags | Description |
-|-----------|------|-------------|
-| page |  ``` Optional ```  | Page number |
-| size |  ``` Optional ```  | Page size |
-
-
-
-#### Example Usage
-
-```python
-page = 167
-size = 167
-
-result = recipients_controller.get_recipients(page, size)
-
-```
-
-
-### <a name="get_withdraw_by_id"></a>![Method: ](https://apidocs.io/img/method.png ".RecipientsController.get_withdraw_by_id") get_withdraw_by_id
-
-> TODO: Add a method description
-
-```python
-def get_withdraw_by_id(self,
-                           recipient_id,
-                           withdrawal_id)
-```
-
-#### Parameters
-
-| Parameter | Tags | Description |
-|-----------|------|-------------|
-| recipientId |  ``` Required ```  | TODO: Add a parameter description |
-| withdrawalId |  ``` Required ```  | TODO: Add a parameter description |
-
-
-
-#### Example Usage
-
-```python
-recipient_id = 'recipient_id'
-withdrawal_id = 'withdrawal_id'
-
-result = recipients_controller.get_withdraw_by_id(recipient_id, withdrawal_id)
-
-```
-
-
-### <a name="update_recipient_default_bank_account"></a>![Method: ](https://apidocs.io/img/method.png ".RecipientsController.update_recipient_default_bank_account") update_recipient_default_bank_account
-
-> Updates the default bank account from a recipient
-
-```python
-def update_recipient_default_bank_account(self,
-                                              recipient_id,
-                                              request,
-                                              idempotency_key=None)
-```
-
-#### Parameters
-
-| Parameter | Tags | Description |
-|-----------|------|-------------|
-| recipientId |  ``` Required ```  | Recipient id |
-| request |  ``` Required ```  | Bank account data |
-| idempotencyKey |  ``` Optional ```  | TODO: Add a parameter description |
-
-
-
-#### Example Usage
-
-```python
-recipient_id = 'recipient_id'
-request = UpdateRecipientBankAccountRequest()
-idempotency_key = 'idempotency-key'
-
-result = recipients_controller.update_recipient_default_bank_account(recipient_id, request, idempotency_key)
-
-```
-
-
-### <a name="update_recipient_metadata"></a>![Method: ](https://apidocs.io/img/method.png ".RecipientsController.update_recipient_metadata") update_recipient_metadata
-
-> Updates recipient metadata
-
-```python
-def update_recipient_metadata(self,
-                                  recipient_id,
-                                  request,
-                                  idempotency_key=None)
-```
-
-#### Parameters
-
-| Parameter | Tags | Description |
-|-----------|------|-------------|
-| recipientId |  ``` Required ```  | Recipient id |
-| request |  ``` Required ```  | Metadata |
-| idempotencyKey |  ``` Optional ```  | TODO: Add a parameter description |
-
-
-
-#### Example Usage
-
-```python
-recipient_id = 'recipient_id'
-request = UpdateMetadataRequest()
-idempotency_key = 'idempotency-key'
-
-result = recipients_controller.update_recipient_metadata(recipient_id, request, idempotency_key)
-
-```
-
-
-### <a name="get_transfers"></a>![Method: ](https://apidocs.io/img/method.png ".RecipientsController.get_transfers") get_transfers
-
-> Gets a paginated list of transfers for the recipient
-
-```python
-def get_transfers(self,
-                      recipient_id,
-                      page=None,
-                      size=None,
-                      status=None,
-                      created_since=None,
-                      created_until=None)
-```
-
-#### Parameters
-
-| Parameter | Tags | Description |
-|-----------|------|-------------|
-| recipientId |  ``` Required ```  | Recipient id |
-| page |  ``` Optional ```  | Page number |
-| size |  ``` Optional ```  | Page size |
-| status |  ``` Optional ```  | Filter for transfer status |
-| createdSince |  ``` Optional ```  | Filter for start range of transfer creation date |
-| createdUntil |  ``` Optional ```  | Filter for end range of transfer creation date |
-
-
-
-#### Example Usage
-
-```python
-recipient_id = 'recipient_id'
-page = 167
-size = 167
-status = 'status'
-created_since = datetime.now()
-created_until = datetime.now()
-
-result = recipients_controller.get_transfers(recipient_id, page, size, status, created_since, created_until)
-
-```
-
-
-### <a name="create_withdraw"></a>![Method: ](https://apidocs.io/img/method.png ".RecipientsController.create_withdraw") create_withdraw
-
-> TODO: Add a method description
-
-```python
-def create_withdraw(self,
-                        recipient_id,
-                        request)
-```
-
-#### Parameters
-
-| Parameter | Tags | Description |
-|-----------|------|-------------|
-| recipientId |  ``` Required ```  | TODO: Add a parameter description |
-| request |  ``` Required ```  | TODO: Add a parameter description |
-
-
-
-#### Example Usage
-
-```python
-recipient_id = 'recipient_id'
-request = CreateWithdrawRequest()
-
-result = recipients_controller.create_withdraw(recipient_id, request)
-
-```
-
-
-### <a name="update_automatic_anticipation_settings"></a>![Method: ](https://apidocs.io/img/method.png ".RecipientsController.update_automatic_anticipation_settings") update_automatic_anticipation_settings
-
-> Updates recipient metadata
-
-```python
-def update_automatic_anticipation_settings(self,
-                                               recipient_id,
-                                               request,
-                                               idempotency_key=None)
-```
-
-#### Parameters
-
-| Parameter | Tags | Description |
-|-----------|------|-------------|
-| recipientId |  ``` Required ```  | Recipient id |
-| request |  ``` Required ```  | Metadata |
-| idempotencyKey |  ``` Optional ```  | TODO: Add a parameter description |
-
-
-
-#### Example Usage
-
-```python
-recipient_id = 'recipient_id'
-request = UpdateAutomaticAnticipationSettingsRequest()
-idempotency_key = 'idempotency-key'
-
-result = recipients_controller.update_automatic_anticipation_settings(recipient_id, request, idempotency_key)
-
-```
-
-
-### <a name="get_anticipation"></a>![Method: ](https://apidocs.io/img/method.png ".RecipientsController.get_anticipation") get_anticipation
-
-> Gets an anticipation
-
-```python
-def get_anticipation(self,
-                         recipient_id,
-                         anticipation_id)
-```
-
-#### Parameters
-
-| Parameter | Tags | Description |
-|-----------|------|-------------|
-| recipientId |  ``` Required ```  | Recipient id |
-| anticipationId |  ``` Required ```  | Anticipation id |
-
-
-
-#### Example Usage
-
-```python
-recipient_id = 'recipient_id'
-anticipation_id = 'anticipation_id'
-
-result = recipients_controller.get_anticipation(recipient_id, anticipation_id)
-
-```
-
-
-### <a name="update_recipient_transfer_settings"></a>![Method: ](https://apidocs.io/img/method.png ".RecipientsController.update_recipient_transfer_settings") update_recipient_transfer_settings
-
-> TODO: Add a method description
-
-```python
-def update_recipient_transfer_settings(self,
-                                           recipient_id,
-                                           request,
-                                           idempotency_key=None)
-```
-
-#### Parameters
-
-| Parameter | Tags | Description |
-|-----------|------|-------------|
-| recipientId |  ``` Required ```  | Recipient Identificator |
-| request |  ``` Required ```  | TODO: Add a parameter description |
-| idempotencyKey |  ``` Optional ```  | TODO: Add a parameter description |
-
-
-
-#### Example Usage
-
-```python
-recipient_id = 'recipient_id'
-request = UpdateTransferSettingsRequest()
-idempotency_key = 'idempotency-key'
-
-result = recipients_controller.update_recipient_transfer_settings(recipient_id, request, idempotency_key)
-
-```
-
-
-### <a name="get_anticipations"></a>![Method: ](https://apidocs.io/img/method.png ".RecipientsController.get_anticipations") get_anticipations
-
-> Retrieves a paginated list of anticipations from a recipient
-
-```python
-def get_anticipations(self,
-                          recipient_id,
-                          page=None,
-                          size=None,
-                          status=None,
-                          timeframe=None,
-                          payment_date_since=None,
-                          payment_date_until=None,
-                          created_since=None,
-                          created_until=None)
-```
-
-#### Parameters
-
-| Parameter | Tags | Description |
-|-----------|------|-------------|
-| recipientId |  ``` Required ```  | Recipient id |
-| page |  ``` Optional ```  | Page number |
-| size |  ``` Optional ```  | Page size |
-| status |  ``` Optional ```  | Filter for anticipation status |
-| timeframe |  ``` Optional ```  | Filter for anticipation timeframe |
-| paymentDateSince |  ``` Optional ```  | Filter for start range for anticipation payment date |
-| paymentDateUntil |  ``` Optional ```  | Filter for end range for anticipation payment date |
-| createdSince |  ``` Optional ```  | Filter for start range for anticipation creation date |
-| createdUntil |  ``` Optional ```  | Filter for end range for anticipation creation date |
-
-
-
-#### Example Usage
-
-```python
-recipient_id = 'recipient_id'
-page = 167
-size = 167
-status = 'status'
-timeframe = 'timeframe'
-payment_date_since = datetime.now()
-payment_date_until = datetime.now()
-created_since = datetime.now()
-created_until = datetime.now()
-
-result = recipients_controller.get_anticipations(recipient_id, page, size, status, timeframe, payment_date_since, payment_date_until, created_since, created_until)
-
-```
-
-
-### <a name="get_recipient"></a>![Method: ](https://apidocs.io/img/method.png ".RecipientsController.get_recipient") get_recipient
-
-> Retrieves recipient information
-
-```python
-def get_recipient(self,
-                      recipient_id)
-```
-
-#### Parameters
-
-| Parameter | Tags | Description |
-|-----------|------|-------------|
-| recipientId |  ``` Required ```  | Recipiend id |
-
-
-
-#### Example Usage
-
-```python
-recipient_id = 'recipient_id'
-
-result = recipients_controller.get_recipient(recipient_id)
-
-```
-
-
-### <a name="get_withdrawals"></a>![Method: ](https://apidocs.io/img/method.png ".RecipientsController.get_withdrawals") get_withdrawals
-
-> Gets a paginated list of transfers for the recipient
-
-```python
-def get_withdrawals(self,
-                        recipient_id,
-                        page=None,
-                        size=None,
-                        status=None,
-                        created_since=None,
-                        created_until=None)
-```
-
-#### Parameters
-
-| Parameter | Tags | Description |
-|-----------|------|-------------|
-| recipientId |  ``` Required ```  | TODO: Add a parameter description |
-| page |  ``` Optional ```  | TODO: Add a parameter description |
-| size |  ``` Optional ```  | TODO: Add a parameter description |
-| status |  ``` Optional ```  | TODO: Add a parameter description |
-| createdSince |  ``` Optional ```  | TODO: Add a parameter description |
-| createdUntil |  ``` Optional ```  | TODO: Add a parameter description |
-
-
-
-#### Example Usage
-
-```python
-recipient_id = 'recipient_id'
-page = 167
-size = 167
-status = 'status'
-created_since = datetime.now()
-created_until = datetime.now()
-
-result = recipients_controller.get_withdrawals(recipient_id, page, size, status, created_since, created_until)
-
-```
-
-
-### <a name="get_balance"></a>![Method: ](https://apidocs.io/img/method.png ".RecipientsController.get_balance") get_balance
-
-> Get balance information for a recipient
-
-```python
-def get_balance(self,
-                    recipient_id)
-```
-
-#### Parameters
-
-| Parameter | Tags | Description |
-|-----------|------|-------------|
-| recipientId |  ``` Required ```  | Recipient id |
-
-
-
-#### Example Usage
-
-```python
-recipient_id = 'recipient_id'
-
-result = recipients_controller.get_balance(recipient_id)
-
-```
-
-
-### <a name="create_transfer"></a>![Method: ](https://apidocs.io/img/method.png ".RecipientsController.create_transfer") create_transfer
-
-> Creates a transfer for a recipient
-
-```python
-def create_transfer(self,
-                        recipient_id,
-                        request,
-                        idempotency_key=None)
-```
-
-#### Parameters
-
-| Parameter | Tags | Description |
-|-----------|------|-------------|
-| recipientId |  ``` Required ```  | Recipient Id |
-| request |  ``` Required ```  | Transfer data |
-| idempotencyKey |  ``` Optional ```  | TODO: Add a parameter description |
-
-
-
-#### Example Usage
-
-```python
-recipient_id = 'recipient_id'
-request = CreateTransferRequest()
-idempotency_key = 'idempotency-key'
-
-result = recipients_controller.create_transfer(recipient_id, request, idempotency_key)
-
-```
-
-
-### <a name="create_recipient"></a>![Method: ](https://apidocs.io/img/method.png ".RecipientsController.create_recipient") create_recipient
-
-> Creates a new recipient
-
-```python
-def create_recipient(self,
-                         request,
-                         idempotency_key=None)
-```
-
-#### Parameters
-
-| Parameter | Tags | Description |
-|-----------|------|-------------|
-| request |  ``` Required ```  | Recipient data |
-| idempotencyKey |  ``` Optional ```  | TODO: Add a parameter description |
-
-
-
-#### Example Usage
-
-```python
-request = CreateRecipientRequest()
-idempotency_key = 'idempotency-key'
-
-result = recipients_controller.create_recipient(request, idempotency_key)
-
-```
-
-
-### <a name="get_recipient_by_code"></a>![Method: ](https://apidocs.io/img/method.png ".RecipientsController.get_recipient_by_code") get_recipient_by_code
-
-> Retrieves recipient information
-
-```python
-def get_recipient_by_code(self,
-                              code)
-```
-
-#### Parameters
-
-| Parameter | Tags | Description |
-|-----------|------|-------------|
-| code |  ``` Required ```  | Recipient code |
-
-
-
-#### Example Usage
-
-```python
-code = 'code'
-
-result = recipients_controller.get_recipient_by_code(code)
-
-```
-
-
-[Back to List of Controllers](#list_of_controllers)
-
 ## <a name="tokens_controller"></a>![Class: ](https://apidocs.io/img/class.png ".TokensController") TokensController
 
 ### Get controller instance
@@ -4445,8 +4445,8 @@ def get_sellers(self,
 #### Example Usage
 
 ```python
-page = 3
-size = 3
+page = 35
+size = 35
 name = 'name'
 document = 'document'
 code = 'code'
