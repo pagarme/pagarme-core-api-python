@@ -55,6 +55,7 @@ class GetCheckoutPaymentResponse(object):
             cartão de débito
         bank_transfer (GetCheckoutBankTransferPaymentResponse): Bank transfer
             payment response
+        accepted_brands (list of string): Accepted Brands
 
     """
 
@@ -78,6 +79,7 @@ class GetCheckoutPaymentResponse(object):
         "shipping":'shipping',
         "shippable":'shippable',
         "currency":'currency',
+        "accepted_brands":'accepted_brands',
         "amount":'amount',
         "canceled_at":'canceled_at',
         "customer":'customer',
@@ -106,6 +108,7 @@ class GetCheckoutPaymentResponse(object):
                  shipping=None,
                  shippable=None,
                  currency=None,
+                 accepted_brands=None,
                  amount=None,
                  canceled_at=None,
                  customer=None,
@@ -141,6 +144,7 @@ class GetCheckoutPaymentResponse(object):
         self.currency = currency
         self.debit_card = debit_card
         self.bank_transfer = bank_transfer
+        self.accepted_brands = accepted_brands
 
 
     @classmethod
@@ -179,6 +183,7 @@ class GetCheckoutPaymentResponse(object):
         shipping = pagarmecoreapi.models.get_shipping_response.GetShippingResponse.from_dictionary(dictionary.get('shipping')) if dictionary.get('shipping') else None
         shippable = dictionary.get('shippable')
         currency = dictionary.get('currency')
+        accepted_brands = dictionary.get('accepted_brands')
         amount = dictionary.get('amount')
         canceled_at = APIHelper.RFC3339DateTime.from_value(dictionary.get("canceled_at")).datetime if dictionary.get("canceled_at") else None
         customer = pagarmecoreapi.models.get_customer_response.GetCustomerResponse.from_dictionary(dictionary.get('customer')) if dictionary.get('customer') else None
@@ -206,6 +211,7 @@ class GetCheckoutPaymentResponse(object):
                    shipping,
                    shippable,
                    currency,
+                   accepted_brands,
                    amount,
                    canceled_at,
                    customer,
