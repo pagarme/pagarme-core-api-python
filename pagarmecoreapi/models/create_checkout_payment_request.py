@@ -37,6 +37,7 @@ class CreateCheckoutPaymentRequest(object):
         billing_address (CreateAddressRequest): Billing Address
         bank_transfer (CreateCheckoutBankTransferRequest): Bank Transfer
             payment request
+        accepted_brands (list of string): Accepted Brands
 
     """
 
@@ -49,6 +50,7 @@ class CreateCheckoutPaymentRequest(object):
         "billing_address_editable":'billing_address_editable',
         "billing_address":'billing_address',
         "bank_transfer":'bank_transfer',
+        "accepted_brands":'accepted_brands',
         "default_payment_method":'default_payment_method',
         "gateway_affiliation_id":'gateway_affiliation_id',
         "credit_card":'credit_card',
@@ -66,6 +68,7 @@ class CreateCheckoutPaymentRequest(object):
                  billing_address_editable=None,
                  billing_address=None,
                  bank_transfer=None,
+                 accepted_brands=None,
                  default_payment_method=None,
                  gateway_affiliation_id=None,
                  credit_card=None,
@@ -90,6 +93,7 @@ class CreateCheckoutPaymentRequest(object):
         self.billing_address_editable = billing_address_editable
         self.billing_address = billing_address
         self.bank_transfer = bank_transfer
+        self.accepted_brands = accepted_brands
 
 
     @classmethod
@@ -117,6 +121,7 @@ class CreateCheckoutPaymentRequest(object):
         billing_address_editable = dictionary.get('billing_address_editable')
         billing_address = pagarmecoreapi.models.create_address_request.CreateAddressRequest.from_dictionary(dictionary.get('billing_address')) if dictionary.get('billing_address') else None
         bank_transfer = pagarmecoreapi.models.create_checkout_bank_transfer_request.CreateCheckoutBankTransferRequest.from_dictionary(dictionary.get('bank_transfer')) if dictionary.get('bank_transfer') else None
+        accepted_brands = dictionary.get('accepted_brands')
         default_payment_method = dictionary.get('default_payment_method')
         gateway_affiliation_id = dictionary.get('gateway_affiliation_id')
         credit_card = pagarmecoreapi.models.create_checkout_credit_card_payment_request.CreateCheckoutCreditCardPaymentRequest.from_dictionary(dictionary.get('credit_card')) if dictionary.get('credit_card') else None
@@ -133,6 +138,7 @@ class CreateCheckoutPaymentRequest(object):
                    billing_address_editable,
                    billing_address,
                    bank_transfer,
+                   accepted_brands,
                    default_payment_method,
                    gateway_affiliation_id,
                    credit_card,

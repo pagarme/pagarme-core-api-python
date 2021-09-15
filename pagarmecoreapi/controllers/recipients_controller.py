@@ -10,21 +10,67 @@ from pagarmecoreapi.api_helper import APIHelper
 from pagarmecoreapi.configuration import Configuration
 from pagarmecoreapi.controllers.base_controller import BaseController
 from pagarmecoreapi.http.auth.basic_auth import BasicAuth
+from pagarmecoreapi.models.get_transfer_response import GetTransferResponse
 from pagarmecoreapi.models.get_recipient_response import GetRecipientResponse
 from pagarmecoreapi.models.get_anticipation_response import GetAnticipationResponse
 from pagarmecoreapi.models.get_anticipation_limit_response import GetAnticipationLimitResponse
 from pagarmecoreapi.models.list_recipient_response import ListRecipientResponse
 from pagarmecoreapi.models.get_withdraw_response import GetWithdrawResponse
 from pagarmecoreapi.models.list_transfer_response import ListTransferResponse
-from pagarmecoreapi.models.get_transfer_response import GetTransferResponse
 from pagarmecoreapi.models.list_anticipation_response import ListAnticipationResponse
-from pagarmecoreapi.models.get_balance_response import GetBalanceResponse
 from pagarmecoreapi.models.list_withdrawals import ListWithdrawals
+from pagarmecoreapi.models.get_balance_response import GetBalanceResponse
 
 class RecipientsController(BaseController):
 
     """A Controller to access Endpoints in the pagarmecoreapi API."""
 
+
+    def get_transfer(self,
+                     recipient_id,
+                     transfer_id):
+        """Does a GET request to /recipients/{recipient_id}/transfers/{transfer_id}.
+
+        Gets a transfer
+
+        Args:
+            recipient_id (string): Recipient id
+            transfer_id (string): Transfer id
+
+        Returns:
+            GetTransferResponse: Response from the API. 
+
+        Raises:
+            APIException: When an error occurs while fetching the data from
+                the remote API. This exception includes the HTTP Response
+                code, an error message, and the HTTP body that was received in
+                the request.
+
+        """
+
+        # Prepare query URL
+        _url_path = '/recipients/{recipient_id}/transfers/{transfer_id}'
+        _url_path = APIHelper.append_url_with_template_parameters(_url_path, { 
+            'recipient_id': recipient_id,
+            'transfer_id': transfer_id
+        })
+        _query_builder = Configuration.base_uri
+        _query_builder += _url_path
+        _query_url = APIHelper.clean_url(_query_builder)
+
+        # Prepare headers
+        _headers = {
+            'accept': 'application/json'
+        }
+
+        # Prepare and execute request
+        _request = self.http_client.get(_query_url, headers=_headers)
+        BasicAuth.apply(_request)
+        _context = self.execute_request(_request)
+        self.validate_response(_context)
+
+        # Return appropriate type
+        return APIHelper.json_deserialize(_context.response.raw_body, GetTransferResponse.from_dictionary)
 
     def update_recipient(self,
                          recipient_id,
@@ -437,52 +483,6 @@ class RecipientsController(BaseController):
         # Return appropriate type
         return APIHelper.json_deserialize(_context.response.raw_body, ListTransferResponse.from_dictionary)
 
-    def get_transfer(self,
-                     recipient_id,
-                     transfer_id):
-        """Does a GET request to /recipients/{recipient_id}/transfers/{transfer_id}.
-
-        Gets a transfer
-
-        Args:
-            recipient_id (string): Recipient id
-            transfer_id (string): Transfer id
-
-        Returns:
-            GetTransferResponse: Response from the API. 
-
-        Raises:
-            APIException: When an error occurs while fetching the data from
-                the remote API. This exception includes the HTTP Response
-                code, an error message, and the HTTP body that was received in
-                the request.
-
-        """
-
-        # Prepare query URL
-        _url_path = '/recipients/{recipient_id}/transfers/{transfer_id}'
-        _url_path = APIHelper.append_url_with_template_parameters(_url_path, { 
-            'recipient_id': recipient_id,
-            'transfer_id': transfer_id
-        })
-        _query_builder = Configuration.base_uri
-        _query_builder += _url_path
-        _query_url = APIHelper.clean_url(_query_builder)
-
-        # Prepare headers
-        _headers = {
-            'accept': 'application/json'
-        }
-
-        # Prepare and execute request
-        _request = self.http_client.get(_query_url, headers=_headers)
-        BasicAuth.apply(_request)
-        _context = self.execute_request(_request)
-        self.validate_response(_context)
-
-        # Return appropriate type
-        return APIHelper.json_deserialize(_context.response.raw_body, GetTransferResponse.from_dictionary)
-
     def create_withdraw(self,
                         recipient_id,
                         request):
@@ -795,49 +795,6 @@ class RecipientsController(BaseController):
         # Return appropriate type
         return APIHelper.json_deserialize(_context.response.raw_body, GetRecipientResponse.from_dictionary)
 
-    def get_balance(self,
-                    recipient_id):
-        """Does a GET request to /recipients/{recipient_id}/balance.
-
-        Get balance information for a recipient
-
-        Args:
-            recipient_id (string): Recipient id
-
-        Returns:
-            GetBalanceResponse: Response from the API. 
-
-        Raises:
-            APIException: When an error occurs while fetching the data from
-                the remote API. This exception includes the HTTP Response
-                code, an error message, and the HTTP body that was received in
-                the request.
-
-        """
-
-        # Prepare query URL
-        _url_path = '/recipients/{recipient_id}/balance'
-        _url_path = APIHelper.append_url_with_template_parameters(_url_path, { 
-            'recipient_id': recipient_id
-        })
-        _query_builder = Configuration.base_uri
-        _query_builder += _url_path
-        _query_url = APIHelper.clean_url(_query_builder)
-
-        # Prepare headers
-        _headers = {
-            'accept': 'application/json'
-        }
-
-        # Prepare and execute request
-        _request = self.http_client.get(_query_url, headers=_headers)
-        BasicAuth.apply(_request)
-        _context = self.execute_request(_request)
-        self.validate_response(_context)
-
-        # Return appropriate type
-        return APIHelper.json_deserialize(_context.response.raw_body, GetBalanceResponse.from_dictionary)
-
     def get_withdrawals(self,
                         recipient_id,
                         page=None,
@@ -901,6 +858,49 @@ class RecipientsController(BaseController):
 
         # Return appropriate type
         return APIHelper.json_deserialize(_context.response.raw_body, ListWithdrawals.from_dictionary)
+
+    def get_balance(self,
+                    recipient_id):
+        """Does a GET request to /recipients/{recipient_id}/balance.
+
+        Get balance information for a recipient
+
+        Args:
+            recipient_id (string): Recipient id
+
+        Returns:
+            GetBalanceResponse: Response from the API. 
+
+        Raises:
+            APIException: When an error occurs while fetching the data from
+                the remote API. This exception includes the HTTP Response
+                code, an error message, and the HTTP body that was received in
+                the request.
+
+        """
+
+        # Prepare query URL
+        _url_path = '/recipients/{recipient_id}/balance'
+        _url_path = APIHelper.append_url_with_template_parameters(_url_path, { 
+            'recipient_id': recipient_id
+        })
+        _query_builder = Configuration.base_uri
+        _query_builder += _url_path
+        _query_url = APIHelper.clean_url(_query_builder)
+
+        # Prepare headers
+        _headers = {
+            'accept': 'application/json'
+        }
+
+        # Prepare and execute request
+        _request = self.http_client.get(_query_url, headers=_headers)
+        BasicAuth.apply(_request)
+        _context = self.execute_request(_request)
+        self.validate_response(_context)
+
+        # Return appropriate type
+        return APIHelper.json_deserialize(_context.response.raw_body, GetBalanceResponse.from_dictionary)
 
     def create_transfer(self,
                         recipient_id,
