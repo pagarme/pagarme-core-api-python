@@ -14,6 +14,7 @@ import pagarmecoreapi.models.get_subscription_item_response
 import pagarmecoreapi.models.get_setup_response
 import pagarmecoreapi.models.get_discount_response
 import pagarmecoreapi.models.get_increment_response
+import pagarmecoreapi.models.get_subscription_split_response
 
 class GetSubscriptionResponse(object):
 
@@ -50,6 +51,7 @@ class GetSubscriptionResponse(object):
         discounts (list of GetDiscountResponse): Subscription discounts
         increments (list of GetIncrementResponse): Subscription increments
         boleto_due_days (int): Days until boleto expires
+        split (GetSubscriptionSplitResponse): Split
 
     """
 
@@ -81,7 +83,8 @@ class GetSubscriptionResponse(object):
         "minimum_price":'minimum_price',
         "canceled_at":'canceled_at',
         "discounts":'discounts',
-        "boleto_due_days":'boleto_due_days'
+        "boleto_due_days":'boleto_due_days',
+        "split":'split'
     }
 
     def __init__(self,
@@ -111,7 +114,8 @@ class GetSubscriptionResponse(object):
                  minimum_price=None,
                  canceled_at=None,
                  discounts=None,
-                 boleto_due_days=None):
+                 boleto_due_days=None,
+                 split=None):
         """Constructor for the GetSubscriptionResponse class"""
 
         # Initialize members of the class
@@ -142,6 +146,7 @@ class GetSubscriptionResponse(object):
         self.discounts = discounts
         self.increments = increments
         self.boleto_due_days = boleto_due_days
+        self.split = split
 
 
     @classmethod
@@ -201,6 +206,7 @@ class GetSubscriptionResponse(object):
             for structure in dictionary.get('discounts'):
                 discounts.append(pagarmecoreapi.models.get_discount_response.GetDiscountResponse.from_dictionary(structure))
         boleto_due_days = dictionary.get('boleto_due_days')
+        split = pagarmecoreapi.models.get_subscription_split_response.GetSubscriptionSplitResponse.from_dictionary(dictionary.get('split')) if dictionary.get('split') else None
 
         # Return an object of this model
         return cls(id,
@@ -229,6 +235,7 @@ class GetSubscriptionResponse(object):
                    minimum_price,
                    canceled_at,
                    discounts,
-                   boleto_due_days)
+                   boleto_due_days,
+                   split)
 
 
