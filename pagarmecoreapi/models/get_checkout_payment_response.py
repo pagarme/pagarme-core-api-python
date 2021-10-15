@@ -14,6 +14,7 @@ import pagarmecoreapi.models.get_checkout_boleto_payment_response
 import pagarmecoreapi.models.get_shipping_response
 import pagarmecoreapi.models.get_checkout_debit_card_payment_response
 import pagarmecoreapi.models.get_checkout_bank_transfer_payment_response
+import pagarmecoreapi.models.get_checkout_pix_payment_response
 
 class GetCheckoutPaymentResponse(object):
 
@@ -56,6 +57,7 @@ class GetCheckoutPaymentResponse(object):
         bank_transfer (GetCheckoutBankTransferPaymentResponse): Bank transfer
             payment response
         accepted_brands (list of string): Accepted Brands
+        pix (GetCheckoutPixPaymentResponse): Pix payment response
 
     """
 
@@ -86,7 +88,8 @@ class GetCheckoutPaymentResponse(object):
         "closed_at":'closed_at',
         "expires_at":'expires_at',
         "debit_card":'debit_card',
-        "bank_transfer":'bank_transfer'
+        "bank_transfer":'bank_transfer',
+        "pix":'pix'
     }
 
     def __init__(self,
@@ -115,7 +118,8 @@ class GetCheckoutPaymentResponse(object):
                  closed_at=None,
                  expires_at=None,
                  debit_card=None,
-                 bank_transfer=None):
+                 bank_transfer=None,
+                 pix=None):
         """Constructor for the GetCheckoutPaymentResponse class"""
 
         # Initialize members of the class
@@ -145,6 +149,7 @@ class GetCheckoutPaymentResponse(object):
         self.debit_card = debit_card
         self.bank_transfer = bank_transfer
         self.accepted_brands = accepted_brands
+        self.pix = pix
 
 
     @classmethod
@@ -191,6 +196,7 @@ class GetCheckoutPaymentResponse(object):
         expires_at = APIHelper.RFC3339DateTime.from_value(dictionary.get("expires_at")).datetime if dictionary.get("expires_at") else None
         debit_card = pagarmecoreapi.models.get_checkout_debit_card_payment_response.GetCheckoutDebitCardPaymentResponse.from_dictionary(dictionary.get('debit_card')) if dictionary.get('debit_card') else None
         bank_transfer = pagarmecoreapi.models.get_checkout_bank_transfer_payment_response.GetCheckoutBankTransferPaymentResponse.from_dictionary(dictionary.get('bank_transfer')) if dictionary.get('bank_transfer') else None
+        pix = pagarmecoreapi.models.get_checkout_pix_payment_response.GetCheckoutPixPaymentResponse.from_dictionary(dictionary.get('pix')) if dictionary.get('pix') else None
 
         # Return an object of this model
         return cls(id,
@@ -218,6 +224,7 @@ class GetCheckoutPaymentResponse(object):
                    closed_at,
                    expires_at,
                    debit_card,
-                   bank_transfer)
+                   bank_transfer,
+                   pix)
 
 

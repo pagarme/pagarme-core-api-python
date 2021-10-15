@@ -11,6 +11,7 @@ import pagarmecoreapi.models.create_checkout_debit_card_payment_request
 import pagarmecoreapi.models.create_checkout_boleto_payment_request
 import pagarmecoreapi.models.create_address_request
 import pagarmecoreapi.models.create_checkout_bank_transfer_request
+import pagarmecoreapi.models.create_checkout_pix_payment_request
 
 class CreateCheckoutPaymentRequest(object):
 
@@ -38,6 +39,7 @@ class CreateCheckoutPaymentRequest(object):
         bank_transfer (CreateCheckoutBankTransferRequest): Bank Transfer
             payment request
         accepted_brands (list of string): Accepted Brands
+        pix (CreateCheckoutPixPaymentRequest): Pix payment request
 
     """
 
@@ -49,7 +51,6 @@ class CreateCheckoutPaymentRequest(object):
         "skip_checkout_success_page":'skip_checkout_success_page',
         "billing_address_editable":'billing_address_editable',
         "billing_address":'billing_address',
-        "bank_transfer":'bank_transfer',
         "accepted_brands":'accepted_brands',
         "default_payment_method":'default_payment_method',
         "gateway_affiliation_id":'gateway_affiliation_id',
@@ -57,7 +58,9 @@ class CreateCheckoutPaymentRequest(object):
         "debit_card":'debit_card',
         "boleto":'boleto',
         "customer_editable":'customer_editable',
-        "expires_in":'expires_in'
+        "expires_in":'expires_in',
+        "bank_transfer":'bank_transfer',
+        "pix":'pix'
     }
 
     def __init__(self,
@@ -67,7 +70,6 @@ class CreateCheckoutPaymentRequest(object):
                  skip_checkout_success_page=None,
                  billing_address_editable=None,
                  billing_address=None,
-                 bank_transfer=None,
                  accepted_brands=None,
                  default_payment_method=None,
                  gateway_affiliation_id=None,
@@ -75,7 +77,9 @@ class CreateCheckoutPaymentRequest(object):
                  debit_card=None,
                  boleto=None,
                  customer_editable=None,
-                 expires_in=None):
+                 expires_in=None,
+                 bank_transfer=None,
+                 pix=None):
         """Constructor for the CreateCheckoutPaymentRequest class"""
 
         # Initialize members of the class
@@ -94,6 +98,7 @@ class CreateCheckoutPaymentRequest(object):
         self.billing_address = billing_address
         self.bank_transfer = bank_transfer
         self.accepted_brands = accepted_brands
+        self.pix = pix
 
 
     @classmethod
@@ -120,7 +125,6 @@ class CreateCheckoutPaymentRequest(object):
         skip_checkout_success_page = dictionary.get('skip_checkout_success_page')
         billing_address_editable = dictionary.get('billing_address_editable')
         billing_address = pagarmecoreapi.models.create_address_request.CreateAddressRequest.from_dictionary(dictionary.get('billing_address')) if dictionary.get('billing_address') else None
-        bank_transfer = pagarmecoreapi.models.create_checkout_bank_transfer_request.CreateCheckoutBankTransferRequest.from_dictionary(dictionary.get('bank_transfer')) if dictionary.get('bank_transfer') else None
         accepted_brands = dictionary.get('accepted_brands')
         default_payment_method = dictionary.get('default_payment_method')
         gateway_affiliation_id = dictionary.get('gateway_affiliation_id')
@@ -129,6 +133,8 @@ class CreateCheckoutPaymentRequest(object):
         boleto = pagarmecoreapi.models.create_checkout_boleto_payment_request.CreateCheckoutBoletoPaymentRequest.from_dictionary(dictionary.get('boleto')) if dictionary.get('boleto') else None
         customer_editable = dictionary.get('customer_editable')
         expires_in = dictionary.get('expires_in')
+        bank_transfer = pagarmecoreapi.models.create_checkout_bank_transfer_request.CreateCheckoutBankTransferRequest.from_dictionary(dictionary.get('bank_transfer')) if dictionary.get('bank_transfer') else None
+        pix = pagarmecoreapi.models.create_checkout_pix_payment_request.CreateCheckoutPixPaymentRequest.from_dictionary(dictionary.get('pix')) if dictionary.get('pix') else None
 
         # Return an object of this model
         return cls(accepted_payment_methods,
@@ -137,7 +143,6 @@ class CreateCheckoutPaymentRequest(object):
                    skip_checkout_success_page,
                    billing_address_editable,
                    billing_address,
-                   bank_transfer,
                    accepted_brands,
                    default_payment_method,
                    gateway_affiliation_id,
@@ -145,6 +150,8 @@ class CreateCheckoutPaymentRequest(object):
                    debit_card,
                    boleto,
                    customer_editable,
-                   expires_in)
+                   expires_in,
+                   bank_transfer,
+                   pix)
 
 
