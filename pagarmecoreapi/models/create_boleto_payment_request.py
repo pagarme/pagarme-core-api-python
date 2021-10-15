@@ -26,6 +26,7 @@ class CreateBoletoPaymentRequest(object):
         billing_address_id (string): The address id for the billing address
         nosso_numero (string): Customer identification number with the bank
         document_number (string): Boleto identification
+        statement_descriptor (string): Soft Descriptor
 
     """
 
@@ -37,6 +38,7 @@ class CreateBoletoPaymentRequest(object):
         "billing_address":'billing_address',
         "billing_address_id":'billing_address_id',
         "document_number":'document_number',
+        "statement_descriptor":'statement_descriptor',
         "due_at":'due_at',
         "nosso_numero":'nosso_numero'
     }
@@ -48,6 +50,7 @@ class CreateBoletoPaymentRequest(object):
                  billing_address=None,
                  billing_address_id=None,
                  document_number=None,
+                 statement_descriptor=None,
                  due_at=None,
                  nosso_numero=None):
         """Constructor for the CreateBoletoPaymentRequest class"""
@@ -61,6 +64,7 @@ class CreateBoletoPaymentRequest(object):
         self.billing_address_id = billing_address_id
         self.nosso_numero = nosso_numero
         self.document_number = document_number
+        self.statement_descriptor = statement_descriptor
 
 
     @classmethod
@@ -87,6 +91,7 @@ class CreateBoletoPaymentRequest(object):
         billing_address = pagarmecoreapi.models.create_address_request.CreateAddressRequest.from_dictionary(dictionary.get('billing_address')) if dictionary.get('billing_address') else None
         billing_address_id = dictionary.get('billing_address_id')
         document_number = dictionary.get('document_number')
+        statement_descriptor = dictionary.get('statement_descriptor')
         due_at = APIHelper.RFC3339DateTime.from_value(dictionary.get("due_at")).datetime if dictionary.get("due_at") else None
         nosso_numero = dictionary.get('nosso_numero')
 
@@ -97,6 +102,7 @@ class CreateBoletoPaymentRequest(object):
                    billing_address,
                    billing_address_id,
                    document_number,
+                   statement_descriptor,
                    due_at,
                    nosso_numero)
 
