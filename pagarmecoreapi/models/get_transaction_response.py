@@ -718,6 +718,7 @@ class GetBoletoTransactionResponse(GetTransactionResponse):
         paid_amount (string): TODO: type description here.
         mtype (string): TODO: type description here.
         credit_at (datetime): TODO: type description here.
+        statement_descriptor (string): Soft Descriptor
 
     """
 
@@ -736,6 +737,7 @@ class GetBoletoTransactionResponse(GetTransactionResponse):
         "pdf":'pdf',
         "paid_amount":'paid_amount',
         "mtype":'type',
+        "statement_descriptor":'statement_descriptor',
         "gateway_id":'gateway_id',
         "amount":'amount',
         "status":'status',
@@ -771,6 +773,7 @@ class GetBoletoTransactionResponse(GetTransactionResponse):
                  pdf=None,
                  paid_amount=None,
                  mtype=None,
+                 statement_descriptor=None,
                  gateway_id=None,
                  amount=None,
                  status=None,
@@ -809,6 +812,7 @@ class GetBoletoTransactionResponse(GetTransactionResponse):
         self.paid_amount = paid_amount
         self.mtype = mtype
         self.credit_at = APIHelper.RFC3339DateTime(credit_at) if credit_at else None
+        self.statement_descriptor = statement_descriptor
 
         # Call the constructor for the base class
         super(GetBoletoTransactionResponse, self).__init__(gateway_id,
@@ -860,6 +864,7 @@ class GetBoletoTransactionResponse(GetTransactionResponse):
         pdf = dictionary.get('pdf')
         paid_amount = dictionary.get('paid_amount')
         mtype = dictionary.get('type')
+        statement_descriptor = dictionary.get('statement_descriptor')
         gateway_id = dictionary.get('gateway_id')
         amount = dictionary.get('amount')
         status = dictionary.get('status')
@@ -902,6 +907,7 @@ class GetBoletoTransactionResponse(GetTransactionResponse):
                    pdf,
                    paid_amount,
                    mtype,
+                   statement_descriptor,
                    gateway_id,
                    amount,
                    status,
