@@ -14,6 +14,7 @@ import pagarmecoreapi.models.get_subscription_item_response
 import pagarmecoreapi.models.get_setup_response
 import pagarmecoreapi.models.get_discount_response
 import pagarmecoreapi.models.get_increment_response
+import pagarmecoreapi.models.get_subscription_split_response
 
 class GetSubscriptionResponse(object):
 
@@ -50,6 +51,7 @@ class GetSubscriptionResponse(object):
         discounts (list of GetDiscountResponse): Subscription discounts
         increments (list of GetIncrementResponse): Subscription increments
         boleto_due_days (int): Days until boleto expires
+        split (GetSubscriptionSplitResponse): Subscription's split responde
 
     """
 
@@ -74,6 +76,7 @@ class GetSubscriptionResponse(object):
         "setup":'setup',
         "gateway_affiliation_id":'gateway_affiliation_id',
         "increments":'increments',
+        "split":'split',
         "current_cycle":'current_cycle',
         "customer":'customer',
         "next_billing_at":'next_billing_at',
@@ -104,6 +107,7 @@ class GetSubscriptionResponse(object):
                  setup=None,
                  gateway_affiliation_id=None,
                  increments=None,
+                 split=None,
                  current_cycle=None,
                  customer=None,
                  next_billing_at=None,
@@ -142,6 +146,7 @@ class GetSubscriptionResponse(object):
         self.discounts = discounts
         self.increments = increments
         self.boleto_due_days = boleto_due_days
+        self.split = split
 
 
     @classmethod
@@ -189,6 +194,7 @@ class GetSubscriptionResponse(object):
             increments = list()
             for structure in dictionary.get('increments'):
                 increments.append(pagarmecoreapi.models.get_increment_response.GetIncrementResponse.from_dictionary(structure))
+        split = pagarmecoreapi.models.get_subscription_split_response.GetSubscriptionSplitResponse.from_dictionary(dictionary.get('split')) if dictionary.get('split') else None
         current_cycle = pagarmecoreapi.models.get_period_response.GetPeriodResponse.from_dictionary(dictionary.get('current_cycle')) if dictionary.get('current_cycle') else None
         customer = pagarmecoreapi.models.get_customer_response.GetCustomerResponse.from_dictionary(dictionary.get('customer')) if dictionary.get('customer') else None
         next_billing_at = APIHelper.RFC3339DateTime.from_value(dictionary.get("next_billing_at")).datetime if dictionary.get("next_billing_at") else None
@@ -222,6 +228,7 @@ class GetSubscriptionResponse(object):
                    setup,
                    gateway_affiliation_id,
                    increments,
+                   split,
                    current_cycle,
                    customer,
                    next_billing_at,

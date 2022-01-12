@@ -17,6 +17,7 @@ import pagarmecoreapi.models.create_setup_request
 import pagarmecoreapi.models.create_increment_request
 import pagarmecoreapi.models.create_period_request
 import pagarmecoreapi.models.create_sub_merchant_request
+import pagarmecoreapi.models.create_subscription_split_request
 
 class CreateSubscriptionRequest(object):
 
@@ -58,6 +59,7 @@ class CreateSubscriptionRequest(object):
         increments (list of CreateIncrementRequest): Increments
         period (CreatePeriodRequest): TODO: type description here.
         submerchant (CreateSubMerchantRequest): SubMerchant
+        split (CreateSubscriptionSplitRequest): Subscription's split
 
     """
 
@@ -93,7 +95,8 @@ class CreateSubscriptionRequest(object):
         "quantity":'quantity',
         "boleto_due_days":'boleto_due_days',
         "period":'period',
-        "submerchant":'submerchant'
+        "submerchant":'submerchant',
+        "split":'split'
     }
 
     def __init__(self,
@@ -127,7 +130,8 @@ class CreateSubscriptionRequest(object):
                  quantity=None,
                  boleto_due_days=None,
                  period=None,
-                 submerchant=None):
+                 submerchant=None,
+                 split=None):
         """Constructor for the CreateSubscriptionRequest class"""
 
         # Initialize members of the class
@@ -162,6 +166,7 @@ class CreateSubscriptionRequest(object):
         self.increments = increments
         self.period = period
         self.submerchant = submerchant
+        self.split = split
 
 
     @classmethod
@@ -225,6 +230,7 @@ class CreateSubscriptionRequest(object):
         boleto_due_days = dictionary.get('boleto_due_days')
         period = pagarmecoreapi.models.create_period_request.CreatePeriodRequest.from_dictionary(dictionary.get('period')) if dictionary.get('period') else None
         submerchant = pagarmecoreapi.models.create_sub_merchant_request.CreateSubMerchantRequest.from_dictionary(dictionary.get('submerchant')) if dictionary.get('submerchant') else None
+        split = pagarmecoreapi.models.create_subscription_split_request.CreateSubscriptionSplitRequest.from_dictionary(dictionary.get('split')) if dictionary.get('split') else None
 
         # Return an object of this model
         return cls(customer,
@@ -257,6 +263,7 @@ class CreateSubscriptionRequest(object):
                    quantity,
                    boleto_due_days,
                    period,
-                   submerchant)
+                   submerchant,
+                   split)
 
 

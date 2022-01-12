@@ -29,7 +29,7 @@ class CancelSplitRequest(object):
         "amount":'amount',
         "recipient_id":'recipient_id',
         "options":'options',
-        "split_rule_id":'Split_Rule_ID'
+        "split_rule_id":'split_rule_id'
     }
 
     def __init__(self,
@@ -70,7 +70,7 @@ class CancelSplitRequest(object):
         amount = dictionary.get('amount')
         recipient_id = dictionary.get('recipient_id')
         options = pagarmecoreapi.models.create_split_options_request.CreateSplitOptionsRequest.from_dictionary(dictionary.get('options')) if dictionary.get('options') else None
-        split_rule_id = dictionary.get('Split_Rule_ID')
+        split_rule_id = dictionary.get('split_rule_id')
 
         # Return an object of this model
         return cls(mtype,
