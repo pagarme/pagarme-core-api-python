@@ -13,6 +13,7 @@ import pagarmecoreapi.models.get_antifraud_response
 import pagarmecoreapi.models.get_card_response
 import pagarmecoreapi.models.get_billing_address_response
 import pagarmecoreapi.models.pix_additional_information
+import pagarmecoreapi.models.get_pix_payer_response
 
 class GetTransactionResponse(object):
 
@@ -1705,6 +1706,8 @@ class GetPixTransactionResponse(GetTransactionResponse):
         expires_at (datetime): TODO: type description here.
         additional_information (list of PixAdditionalInformation): TODO: type
             description here.
+        end_to_end_id (string): TODO: type description here.
+        payer (GetPixPayerResponse): TODO: type description here.
 
     """
 
@@ -1727,6 +1730,8 @@ class GetPixTransactionResponse(GetTransactionResponse):
         "gateway_response":'gateway_response',
         "antifraud_response":'antifraud_response',
         "split":'split',
+        "end_to_end_id":'end_to_end_id',
+        "payer":'payer',
         "next_attempt":'next_attempt',
         "transaction_type":'transaction_type',
         "metadata":'metadata'
@@ -1750,6 +1755,8 @@ class GetPixTransactionResponse(GetTransactionResponse):
                  gateway_response=None,
                  antifraud_response=None,
                  split=None,
+                 end_to_end_id=None,
+                 payer=None,
                  next_attempt=None,
                  transaction_type=None,
                  metadata=None):
@@ -1760,6 +1767,8 @@ class GetPixTransactionResponse(GetTransactionResponse):
         self.qr_code_url = qr_code_url
         self.expires_at = APIHelper.RFC3339DateTime(expires_at) if expires_at else None
         self.additional_information = additional_information
+        self.end_to_end_id = end_to_end_id
+        self.payer = payer
 
         # Call the constructor for the base class
         super(GetPixTransactionResponse, self).__init__(gateway_id,
@@ -1827,6 +1836,8 @@ class GetPixTransactionResponse(GetTransactionResponse):
             split = list()
             for structure in dictionary.get('split'):
                 split.append(pagarmecoreapi.models.get_split_response.GetSplitResponse.from_dictionary(structure))
+        end_to_end_id = dictionary.get('end_to_end_id')
+        payer = pagarmecoreapi.models.get_pix_payer_response.GetPixPayerResponse.from_dictionary(dictionary.get('payer')) if dictionary.get('payer') else None
         next_attempt = APIHelper.RFC3339DateTime.from_value(dictionary.get("next_attempt")).datetime if dictionary.get("next_attempt") else None
         transaction_type = dictionary.get('transaction_type')
         metadata = dictionary.get('metadata')
@@ -1849,6 +1860,8 @@ class GetPixTransactionResponse(GetTransactionResponse):
                    gateway_response,
                    antifraud_response,
                    split,
+                   end_to_end_id,
+                   payer,
                    next_attempt,
                    transaction_type,
                    metadata)
