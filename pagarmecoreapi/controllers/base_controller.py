@@ -9,6 +9,7 @@
 from pagarmecoreapi.api_helper import APIHelper
 from pagarmecoreapi.http.http_context import HttpContext
 from pagarmecoreapi.http.requests_client import RequestsClient
+from pagarmecoreapi.exceptions.api_exception import APIException
 from pagarmecoreapi.exceptions.error_exception import ErrorException
 
 class BaseController(object):
