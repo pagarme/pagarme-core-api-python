@@ -103,4 +103,4 @@ class BaseController(object):
         elif context.response.status_code == 500:
             raise ErrorException('Internal server error', context)
         elif (context.response.status_code < 200) or (context.response.status_code > 208): #[200,208] = HTTP OK
-            raise APIException('HTTP response not OK.', context)
+            raise ErrorException('HTTP response not OK.', context)
