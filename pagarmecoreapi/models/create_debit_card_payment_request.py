@@ -19,14 +19,14 @@ class CreateDebitCardPaymentRequest(object):
     Attributes:
         statement_descriptor (string): The text that will be shown on the
             debit card's statement
-        card (CreateCardRequest): Debit card data
+        card (CreateCardRequest): Card data
         card_id (string): The debit card id
         card_token (string): The debit card token
         recurrence (bool): Indicates a recurrence
         authentication (CreatePaymentAuthenticationRequest): The payment
             authentication request
-        token (CreateCardPaymentContactlessRequest): The Debit card payment
-            token request
+        token (CreateCardPaymentContactlessRequest): The card payment
+            contactless request
         recurrency_cycle (string): Defines whether the card has been used one
             or more times.
 

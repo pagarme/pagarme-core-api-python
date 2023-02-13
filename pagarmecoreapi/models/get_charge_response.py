@@ -29,11 +29,12 @@ class GetChargeResponse(object):
         due_at (datetime): TODO: type description here.
         created_at (datetime): TODO: type description here.
         updated_at (datetime): TODO: type description here.
-        last_transaction (GetTransactionResponse): TODO: type description
-            here.
-        invoice (GetInvoiceResponse): TODO: type description here.
-        order (GetOrderResponse): TODO: type description here.
-        customer (GetCustomerResponse): TODO: type description here.
+        last_transaction (GetTransactionResponse): Generic response object for
+            getting a transaction.
+        invoice (GetInvoiceResponse): Response object for getting an invoice
+        order (GetOrderResponse): Response object for getting an Order
+        customer (GetCustomerResponse): Response object for getting a
+            customer
         metadata (dict<object, string>): TODO: type description here.
         paid_at (datetime): TODO: type description here.
         canceled_at (datetime): TODO: type description here.
