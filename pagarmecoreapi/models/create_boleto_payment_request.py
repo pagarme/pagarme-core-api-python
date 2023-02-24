@@ -24,13 +24,14 @@ class CreateBoletoPaymentRequest(object):
         instructions (string): The instructions field that will be printed on
             the boleto.
         due_at (datetime): Boleto due date
-        billing_address (CreateAddressRequest): Card's billing address
+        billing_address (CreateAddressRequest): Request for creating a new
+            Address
         billing_address_id (string): The address id for the billing address
         nosso_numero (string): Customer identification number with the bank
         document_number (string): Boleto identification
         statement_descriptor (string): Soft Descriptor
-        interest (CreateInterestRequest): TODO: type description here.
-        fine (CreateFineRequest): TODO: type description here.
+        interest (CreateInterestRequest): Interest Request
+        fine (CreateFineRequest): Fine Request
         max_days_to_pay_past_due (int): TODO: type description here.
 
     """

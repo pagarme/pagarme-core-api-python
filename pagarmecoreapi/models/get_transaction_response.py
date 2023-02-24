@@ -36,13 +36,14 @@ class GetTransactionResponse(object):
         next_attempt (datetime): Date and time of the next attempt
         transaction_type (string): TODO: type description here.
         id (string): Código da transação
-        gateway_response (GetGatewayResponseResponse): The Gateway Response
+        gateway_response (GetGatewayResponseResponse): The Transaction Gateway
+            Response
         antifraud_response (GetAntifraudResponse): TODO: type description
             here.
         metadata (dict<object, string>): TODO: type description here.
         split (list of GetSplitResponse): TODO: type description here.
-        interest (GetInterestResponse): TODO: type description here.
-        fine (GetFineResponse): TODO: type description here.
+        interest (GetInterestResponse): Interest response
+        fine (GetFineResponse): Fine Response
         max_days_to_pay_past_due (int): TODO: type description here.
 
     """
@@ -568,7 +569,7 @@ class GetVoucherTransactionResponse(GetTransactionResponse):
         acquirer_message (string): acquirer_message
         acquirer_return_code (string): Acquirer return code
         operation_type (string): Operation type
-        card (GetCardResponse): Card data
+        card (GetCardResponse): Response object for getting a credit card
 
     """
 
@@ -773,8 +774,8 @@ class GetBoletoTransactionResponse(GetTransactionResponse):
         bank (string): TODO: type description here.
         document_number (string): TODO: type description here.
         instructions (string): TODO: type description here.
-        billing_address (GetBillingAddressResponse): TODO: type description
-            here.
+        billing_address (GetBillingAddressResponse): Response object for
+            getting a billing address
         due_at (datetime): TODO: type description here.
         qr_code (string): TODO: type description here.
         line (string): TODO: type description here.
@@ -1026,7 +1027,7 @@ class GetDebitCardTransactionResponse(GetTransactionResponse):
         acquirer_nsu (string): Acquirer NSU
         acquirer_auth_code (string): Acquirer authorization code
         operation_type (string): Operation type
-        card (GetCardResponse): Card data
+        card (GetCardResponse): Response object for getting a credit card
         acquirer_message (string): Acquirer message
         acquirer_return_code (string): Acquirer Return Code
         mpi (string): Merchant Plugin
@@ -1259,7 +1260,7 @@ class GetPrivateLabelTransactionResponse(GetTransactionResponse):
         acquirer_nsu (string): Acquirer NSU
         acquirer_auth_code (string): Acquirer authorization code
         operation_type (string): Operation type
-        card (GetCardResponse): Card data
+        card (GetCardResponse): Response object for getting a credit card
         acquirer_message (string): Acquirer message
         acquirer_return_code (string): Acquirer Return Code
         installments (int): Number of installments
@@ -1628,7 +1629,7 @@ class GetCreditCardTransactionResponse(GetTransactionResponse):
         acquirer_nsu (string): Acquirer NSU
         acquirer_auth_code (string): Acquirer authorization code
         operation_type (string): Operation type
-        card (GetCardResponse): Card data
+        card (GetCardResponse): Response object for getting a credit card
         acquirer_message (string): Acquirer message
         acquirer_return_code (string): Acquirer Return Code
         installments (int): Number of installments
@@ -1847,7 +1848,7 @@ class GetPixTransactionResponse(GetTransactionResponse):
         additional_information (list of PixAdditionalInformation): TODO: type
             description here.
         end_to_end_id (string): TODO: type description here.
-        payer (GetPixPayerResponse): TODO: type description here.
+        payer (GetPixPayerResponse): Pix payer data.
 
     """
 
@@ -1857,6 +1858,7 @@ class GetPixTransactionResponse(GetTransactionResponse):
         "qr_code_url":'qr_code_url',
         "expires_at":'expires_at',
         "additional_information":'additional_information',
+        "payer":'payer',
         "gateway_id":'gateway_id',
         "amount":'amount',
         "status":'status',
@@ -1871,7 +1873,6 @@ class GetPixTransactionResponse(GetTransactionResponse):
         "antifraud_response":'antifraud_response',
         "split":'split',
         "end_to_end_id":'end_to_end_id',
-        "payer":'payer',
         "next_attempt":'next_attempt',
         "transaction_type":'transaction_type',
         "metadata":'metadata',
@@ -1885,6 +1886,7 @@ class GetPixTransactionResponse(GetTransactionResponse):
                  qr_code_url=None,
                  expires_at=None,
                  additional_information=None,
+                 payer=None,
                  gateway_id=None,
                  amount=None,
                  status=None,
@@ -1899,7 +1901,6 @@ class GetPixTransactionResponse(GetTransactionResponse):
                  antifraud_response=None,
                  split=None,
                  end_to_end_id=None,
-                 payer=None,
                  next_attempt=None,
                  transaction_type=None,
                  metadata=None,
@@ -1964,6 +1965,7 @@ class GetPixTransactionResponse(GetTransactionResponse):
             additional_information = list()
             for structure in dictionary.get('additional_information'):
                 additional_information.append(pagarmecoreapi.models.pix_additional_information.PixAdditionalInformation.from_dictionary(structure))
+        payer = pagarmecoreapi.models.get_pix_payer_response.GetPixPayerResponse.from_dictionary(dictionary.get('payer')) if dictionary.get('payer') else None
         gateway_id = dictionary.get('gateway_id')
         amount = dictionary.get('amount')
         status = dictionary.get('status')
@@ -1986,7 +1988,6 @@ class GetPixTransactionResponse(GetTransactionResponse):
             for structure in dictionary.get('split'):
                 split.append(pagarmecoreapi.models.get_split_response.GetSplitResponse.from_dictionary(structure))
         end_to_end_id = dictionary.get('end_to_end_id')
-        payer = pagarmecoreapi.models.get_pix_payer_response.GetPixPayerResponse.from_dictionary(dictionary.get('payer')) if dictionary.get('payer') else None
         next_attempt = APIHelper.RFC3339DateTime.from_value(dictionary.get("next_attempt")).datetime if dictionary.get("next_attempt") else None
         transaction_type = dictionary.get('transaction_type')
         metadata = dictionary.get('metadata')
@@ -1999,6 +2000,7 @@ class GetPixTransactionResponse(GetTransactionResponse):
                    qr_code_url,
                    expires_at,
                    additional_information,
+                   payer,
                    gateway_id,
                    amount,
                    status,
@@ -2013,7 +2015,6 @@ class GetPixTransactionResponse(GetTransactionResponse):
                    antifraud_response,
                    split,
                    end_to_end_id,
-                   payer,
                    next_attempt,
                    transaction_type,
                    metadata,
