@@ -19,7 +19,7 @@ class CreateVoucherPaymentRequest(object):
             voucher's statement
         card_id (string): Card id
         card_token (string): Card token
-        card (CreateCardRequest): Card info
+        card (CreateCardRequest): Card data
         recurrency_cycle (string): Defines whether the card has been used one
             or more times.
 

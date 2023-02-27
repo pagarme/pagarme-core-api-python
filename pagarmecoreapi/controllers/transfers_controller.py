@@ -12,6 +12,7 @@ from pagarmecoreapi.controllers.base_controller import BaseController
 from pagarmecoreapi.http.auth.basic_auth import BasicAuth
 from pagarmecoreapi.models.get_transfer import GetTransfer
 from pagarmecoreapi.models.list_transfers import ListTransfers
+from pagarmecoreapi.exceptions.error_exception import ErrorException
 
 class TransfersController(BaseController):
 
@@ -22,7 +23,7 @@ class TransfersController(BaseController):
                            transfer_id):
         """Does a GET request to /transfers/{transfer_id}.
 
-        TODO: type endpoint description here.
+        GetTransferById
 
         Args:
             transfer_id (string): TODO: type description here. Example: 
@@ -56,19 +57,33 @@ class TransfersController(BaseController):
         _request = self.http_client.get(_query_url, headers=_headers)
         BasicAuth.apply(_request)
         _context = self.execute_request(_request)
+
+        # Endpoint and global error handling using HTTP status codes.
+        if _context.response.status_code == 400:
+            raise ErrorException('Invalid request', _context)
+        elif _context.response.status_code == 401:
+            raise ErrorException('Invalid API key', _context)
+        elif _context.response.status_code == 404:
+            raise ErrorException('An informed resource was not found', _context)
+        elif _context.response.status_code == 412:
+            raise ErrorException('Business validation error', _context)
+        elif _context.response.status_code == 422:
+            raise ErrorException('Contract validation error', _context)
+        elif _context.response.status_code == 500:
+            raise ErrorException('Internal server error', _context)
         self.validate_response(_context)
 
         # Return appropriate type
         return APIHelper.json_deserialize(_context.response.raw_body, GetTransfer.from_dictionary)
 
-    def create_transfer(self,
-                        request):
+    def post_create_transfer(self,
+                             body):
         """Does a POST request to /transfers/recipients.
 
-        TODO: type endpoint description here.
+        CreateTransfer
 
         Args:
-            request (CreateTransfer): TODO: type description here. Example: 
+            body (CreateTransfer): TODO: type description here. Example: 
 
         Returns:
             GetTransfer: Response from the API. 
@@ -90,19 +105,33 @@ class TransfersController(BaseController):
         # Prepare headers
         _headers = {
             'accept': 'application/json',
-            'content-type': 'application/json; charset=utf-8'
+            'Content-Type': 'application/json'
         }
 
         # Prepare and execute request
-        _request = self.http_client.post(_query_url, headers=_headers, parameters=APIHelper.json_serialize(request))
+        _request = self.http_client.post(_query_url, headers=_headers, parameters=APIHelper.json_serialize(body))
         BasicAuth.apply(_request)
         _context = self.execute_request(_request)
+
+        # Endpoint and global error handling using HTTP status codes.
+        if _context.response.status_code == 400:
+            raise ErrorException('Invalid request', _context)
+        elif _context.response.status_code == 401:
+            raise ErrorException('Invalid API key', _context)
+        elif _context.response.status_code == 404:
+            raise ErrorException('An informed resource was not found', _context)
+        elif _context.response.status_code == 412:
+            raise ErrorException('Business validation error', _context)
+        elif _context.response.status_code == 422:
+            raise ErrorException('Contract validation error', _context)
+        elif _context.response.status_code == 500:
+            raise ErrorException('Internal server error', _context)
         self.validate_response(_context)
 
         # Return appropriate type
         return APIHelper.json_deserialize(_context.response.raw_body, GetTransfer.from_dictionary)
 
-    def get_transfers(self):
+    def get_transfers_1(self):
         """Does a GET request to /transfers.
 
         Gets all transfers
@@ -133,6 +162,20 @@ class TransfersController(BaseController):
         _request = self.http_client.get(_query_url, headers=_headers)
         BasicAuth.apply(_request)
         _context = self.execute_request(_request)
+
+        # Endpoint and global error handling using HTTP status codes.
+        if _context.response.status_code == 400:
+            raise ErrorException('Invalid request', _context)
+        elif _context.response.status_code == 401:
+            raise ErrorException('Invalid API key', _context)
+        elif _context.response.status_code == 404:
+            raise ErrorException('An informed resource was not found', _context)
+        elif _context.response.status_code == 412:
+            raise ErrorException('Business validation error', _context)
+        elif _context.response.status_code == 422:
+            raise ErrorException('Contract validation error', _context)
+        elif _context.response.status_code == 500:
+            raise ErrorException('Internal server error', _context)
         self.validate_response(_context)
 
         # Return appropriate type

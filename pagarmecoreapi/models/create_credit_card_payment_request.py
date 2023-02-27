@@ -20,7 +20,7 @@ class CreateCreditCardPaymentRequest(object):
         installments (int): Number of installments
         statement_descriptor (string): The text that will be shown on the
             credit card's statement
-        card (CreateCardRequest): Credit card data
+        card (CreateCardRequest): Card data
         card_id (string): The credit card id
         card_token (string): TODO: type description here.
         recurrence (bool): Indicates a recurrence
@@ -32,8 +32,8 @@ class CreateCreditCardPaymentRequest(object):
         merchant_category_code (long|int): Customer business segment code
         authentication (CreatePaymentAuthenticationRequest): The payment
             authentication request
-        contactless (CreateCardPaymentContactlessRequest): The Credit card
-            payment contactless request
+        contactless (CreateCardPaymentContactlessRequest): The card payment
+            contactless request
         auto_recovery (bool): Indicates whether a particular payment will
             enter the offline retry flow
         operation_type (string): AuthOnly, AuthAndCapture, PreAuth
