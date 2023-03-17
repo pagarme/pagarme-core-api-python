@@ -353,8 +353,8 @@ def get_usages(self,
 ```python
 subscription_id = 'subscription_id'
 item_id = 'item_id'
-page = 169
-size = 169
+page = 112
+size = 112
 code = 'code'
 group = 'group'
 used_since = datetime.now()
@@ -553,8 +553,8 @@ def get_subscription_items(self,
 
 ```python
 subscription_id = 'subscription_id'
-page = 169
-size = 169
+page = 112
+size = 112
 name = 'name'
 code = 'code'
 status = 'status'
@@ -760,8 +760,8 @@ def get_subscriptions(self,
 #### Example Usage
 
 ```python
-page = 169
-size = 169
+page = 112
+size = 112
 code = 'code'
 billing_type = 'billing_type'
 customer_id = 'customer_id'
@@ -841,7 +841,8 @@ result = subscriptions_controller.create_subscription(body, idempotency_key)
 ```python
 def cancel_subscription(self,
                             subscription_id,
-                            idempotency_key=None)
+                            idempotency_key=None,
+                            body=None)
 ```
 
 #### Parameters
@@ -850,6 +851,7 @@ def cancel_subscription(self,
 |-----------|------|-------------|
 | subscriptionId |  ``` Required ```  | Subscription id |
 | idempotencyKey |  ``` Optional ```  | TODO: Add a parameter description |
+| body |  ``` Optional ```  | Request for cancelling a subscription |
 
 
 
@@ -858,8 +860,9 @@ def cancel_subscription(self,
 ```python
 subscription_id = 'subscription_id'
 idempotency_key = 'idempotency-key'
+body = CreateCancelSubscriptionRequest()
 
-result = subscriptions_controller.cancel_subscription(subscription_id, idempotency_key)
+result = subscriptions_controller.cancel_subscription(subscription_id, idempotency_key, body)
 
 ```
 
@@ -1301,8 +1304,8 @@ def get_discounts(self,
 
 ```python
 subscription_id = 'subscription_id'
-page = 127
-size = 127
+page = 70
+size = 70
 
 result = subscriptions_controller.get_discounts(subscription_id, page, size)
 
@@ -1439,8 +1442,8 @@ def get_increments(self,
 
 ```python
 subscription_id = 'subscription_id'
-page = 127
-size = 127
+page = 70
+size = 70
 
 result = subscriptions_controller.get_increments(subscription_id, page, size)
 
@@ -1817,8 +1820,8 @@ def get_orders(self,
 #### Example Usage
 
 ```python
-page = 127
-size = 127
+page = 70
+size = 70
 code = 'code'
 status = 'status'
 created_since = datetime.now()
@@ -2691,8 +2694,8 @@ def get_plans(self,
 #### Example Usage
 
 ```python
-page = 219
-size = 219
+page = 70
+size = 70
 name = 'name'
 status = 'status'
 billing_type = 'billing_type'
@@ -2987,8 +2990,8 @@ def get_invoices(self,
 #### Example Usage
 
 ```python
-page = 219
-size = 219
+page = 162
+size = 162
 code = 'code'
 customer_id = 'customer_id'
 subscription_id = 'subscription_id'
@@ -3511,8 +3514,8 @@ def get_access_tokens(self,
 
 ```python
 customer_id = 'customer_id'
-page = 219
-size = 219
+page = 162
+size = 162
 
 result = customers_controller.get_access_tokens(customer_id, page, size)
 
@@ -3603,8 +3606,8 @@ def get_addresses(self,
 
 ```python
 customer_id = 'customer_id'
-page = 55
-size = 55
+page = 162
+size = 162
 
 result = customers_controller.get_addresses(customer_id, page, size)
 
@@ -3833,8 +3836,8 @@ def get_cards(self,
 
 ```python
 customer_id = 'customer_id'
-page = 55
-size = 55
+page = 162
+size = 162
 
 result = customers_controller.get_cards(customer_id, page, size)
 
@@ -4207,8 +4210,8 @@ def get_charge_transactions(self,
 
 ```python
 charge_id = 'charge_id'
-page = 55
-size = 55
+page = 162
+size = 162
 
 result = charges_controller.get_charge_transactions(charge_id, page, size)
 
@@ -4310,8 +4313,8 @@ def get_charges(self,
 #### Example Usage
 
 ```python
-page = 55
-size = 55
+page = 162
+size = 162
 code = 'code'
 status = 'status'
 payment_method = 'payment_method'
@@ -4431,7 +4434,8 @@ result = charges_controller.get_charge(charge_id)
 ```python
 def cancel_charge(self,
                       charge_id,
-                      idempotency_key=None)
+                      idempotency_key=None,
+                      body=None)
 ```
 
 #### Parameters
@@ -4440,6 +4444,7 @@ def cancel_charge(self,
 |-----------|------|-------------|
 | chargeId |  ``` Required ```  | Charge id |
 | idempotencyKey |  ``` Optional ```  | TODO: Add a parameter description |
+| body |  ``` Optional ```  | Request for cancelling a charge |
 
 
 
@@ -4448,8 +4453,9 @@ def cancel_charge(self,
 ```python
 charge_id = 'charge_id'
 idempotency_key = 'idempotency-key'
+body = CreateCancelChargeRequest()
 
-result = charges_controller.cancel_charge(charge_id, idempotency_key)
+result = charges_controller.cancel_charge(charge_id, idempotency_key, body)
 
 ```
 
@@ -4869,8 +4875,8 @@ def get_anticipations(self,
 
 ```python
 recipient_id = 'recipient_id'
-page = 13
-size = 13
+page = 120
+size = 120
 status = 'status'
 timeframe = 'timeframe'
 payment_date_since = datetime.now()
@@ -4964,8 +4970,8 @@ def get_recipients(self,
 #### Example Usage
 
 ```python
-page = 13
-size = 13
+page = 120
+size = 120
 
 result = recipients_controller.get_recipients(page, size)
 
@@ -5194,8 +5200,8 @@ def get_transfers(self,
 
 ```python
 recipient_id = 'recipient_id'
-page = 155
-size = 155
+page = 120
+size = 120
 status = 'status'
 created_since = datetime.now()
 created_until = datetime.now()
@@ -5338,8 +5344,8 @@ def get_withdrawals(self,
 
 ```python
 recipient_id = 'recipient_id'
-page = 246
-size = 246
+page = 120
+size = 120
 status = 'status'
 created_since = datetime.now()
 created_until = datetime.now()

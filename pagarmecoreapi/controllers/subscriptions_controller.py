@@ -1004,7 +1004,8 @@ class SubscriptionsController(BaseController):
 
     def cancel_subscription(self,
                             subscription_id,
-                            idempotency_key=None):
+                            idempotency_key=None,
+                            body=None):
         """Does a DELETE request to /subscriptions/{subscription_id}.
 
         Cancels a subscription
@@ -1013,6 +1014,8 @@ class SubscriptionsController(BaseController):
             subscription_id (string): Subscription id
             idempotency_key (string, optional): TODO: type description here.
                 Example: 
+            body (CreateCancelSubscriptionRequest, optional): Request for
+                cancelling a subscription
 
         Returns:
             GetSubscriptionResponse: Response from the API. 
@@ -1037,11 +1040,12 @@ class SubscriptionsController(BaseController):
         # Prepare headers
         _headers = {
             'accept': 'application/json',
+            'Content-Type': 'application/json',
             'idempotency-key': idempotency_key
         }
 
         # Prepare and execute request
-        _request = self.http_client.delete(_query_url, headers=_headers)
+        _request = self.http_client.delete(_query_url, headers=_headers, parameters=APIHelper.json_serialize(body))
         BasicAuth.apply(_request)
         _context = self.execute_request(_request)
 

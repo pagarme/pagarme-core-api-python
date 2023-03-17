@@ -558,7 +558,8 @@ class ChargesController(BaseController):
 
     def cancel_charge(self,
                       charge_id,
-                      idempotency_key=None):
+                      idempotency_key=None,
+                      body=None):
         """Does a DELETE request to /charges/{charge_id}.
 
         Cancel a charge
@@ -567,6 +568,8 @@ class ChargesController(BaseController):
             charge_id (string): Charge id
             idempotency_key (string, optional): TODO: type description here.
                 Example: 
+            body (CreateCancelChargeRequest, optional): Request for cancelling
+                a charge
 
         Returns:
             GetChargeResponse: Response from the API. 
@@ -591,11 +594,12 @@ class ChargesController(BaseController):
         # Prepare headers
         _headers = {
             'accept': 'application/json',
+            'Content-Type': 'application/json',
             'idempotency-key': idempotency_key
         }
 
         # Prepare and execute request
-        _request = self.http_client.delete(_query_url, headers=_headers)
+        _request = self.http_client.delete(_query_url, headers=_headers, parameters=APIHelper.json_serialize(body))
         BasicAuth.apply(_request)
         _context = self.execute_request(_request)
 
