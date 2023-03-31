@@ -8,6 +8,6 @@ __all__ = [
     'charges_controller',
     'recipients_controller',
     'tokens_controller',
-    'transactions_controller',
     'transfers_controller',
+    'transactions_controller',
 ]

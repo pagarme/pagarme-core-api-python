@@ -12,7 +12,7 @@ else:
 
 setup(
     name='pagarmecoreapi',
-    version='5.7.1',
+    version='5.7.2',
     description='Pagarme API',
     long_description=long_description,
     long_description_content_type="text/markdown",
