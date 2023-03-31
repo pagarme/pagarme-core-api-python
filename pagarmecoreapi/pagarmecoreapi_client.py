@@ -16,8 +16,8 @@ from pagarmecoreapi.controllers.customers_controller import CustomersController
 from pagarmecoreapi.controllers.charges_controller import ChargesController
 from pagarmecoreapi.controllers.recipients_controller import RecipientsController
 from pagarmecoreapi.controllers.tokens_controller import TokensController
-from pagarmecoreapi.controllers.transactions_controller import TransactionsController
 from pagarmecoreapi.controllers.transfers_controller import TransfersController
+from pagarmecoreapi.controllers.transactions_controller import TransactionsController
 
 
 class PagarmecoreapiClient(object):
@@ -57,12 +57,12 @@ class PagarmecoreapiClient(object):
         return TokensController()
 
     @lazy_property
-    def transactions(self):
-        return TransactionsController()
-
-    @lazy_property
     def transfers(self):
         return TransfersController()
+
+    @lazy_property
+    def transactions(self):
+        return TransactionsController()
 
 
     def __init__(self,
