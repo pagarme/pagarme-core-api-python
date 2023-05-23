@@ -1635,6 +1635,7 @@ class GetPixTransactionResponse(GetTransactionResponse):
             description here.
         end_to_end_id (string): TODO: type description here.
         payer (GetPixPayerResponse): Pix payer data.
+        provider_transaction_id (string): Provider transaction id
 
     """
 
@@ -1645,6 +1646,7 @@ class GetPixTransactionResponse(GetTransactionResponse):
         "expires_at":'expires_at',
         "additional_information":'additional_information',
         "payer":'payer',
+        "provider_transaction_id":'provider_transaction_id',
         "gateway_id":'gateway_id',
         "amount":'amount',
         "status":'status',
@@ -1673,6 +1675,7 @@ class GetPixTransactionResponse(GetTransactionResponse):
                  expires_at=None,
                  additional_information=None,
                  payer=None,
+                 provider_transaction_id=None,
                  gateway_id=None,
                  amount=None,
                  status=None,
@@ -1702,6 +1705,7 @@ class GetPixTransactionResponse(GetTransactionResponse):
         self.additional_information = additional_information
         self.end_to_end_id = end_to_end_id
         self.payer = payer
+        self.provider_transaction_id = provider_transaction_id
 
         # Call the constructor for the base class
         super(GetPixTransactionResponse, self).__init__(gateway_id,
@@ -1752,6 +1756,7 @@ class GetPixTransactionResponse(GetTransactionResponse):
             for structure in dictionary.get('additional_information'):
                 additional_information.append(pagarmecoreapi.models.pix_additional_information.PixAdditionalInformation.from_dictionary(structure))
         payer = pagarmecoreapi.models.get_pix_payer_response.GetPixPayerResponse.from_dictionary(dictionary.get('payer')) if dictionary.get('payer') else None
+        provider_transaction_id = dictionary.get('provider_transaction_id')
         gateway_id = dictionary.get('gateway_id')
         amount = dictionary.get('amount')
         status = dictionary.get('status')
@@ -1787,6 +1792,7 @@ class GetPixTransactionResponse(GetTransactionResponse):
                    expires_at,
                    additional_information,
                    payer,
+                   provider_transaction_id,
                    gateway_id,
                    amount,
                    status,
