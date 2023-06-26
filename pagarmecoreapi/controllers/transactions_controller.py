@@ -49,8 +49,7 @@ class TransactionsController(BaseController):
 
         # Prepare headers
         _headers = {
-            'accept': 'application/json',
-            'ServiceRefererName': Configuration.service_referer_name
+            'accept': 'application/json'
         }
 
         # Prepare and execute request

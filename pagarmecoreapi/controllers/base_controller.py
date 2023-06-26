@@ -32,7 +32,7 @@ class BaseController(object):
     http_call_back = None
 
     global_headers = {
-        'user-agent': 'PagarmeCoreApi - Python 5.7.5'
+        'user-agent': 'PagarmeCoreApi - Python 5.7.6'
     }
 
     def __init__(self, client=None, call_back=None):

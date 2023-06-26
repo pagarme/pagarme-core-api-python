@@ -61,7 +61,6 @@ class TokensController(BaseController):
         # Prepare headers
         _headers = {
             'accept': 'application/json',
-            'ServiceRefererName': Configuration.service_referer_name,
             'Content-Type': 'application/json',
             'idempotency-key': idempotency_key
         }
@@ -129,8 +128,7 @@ class TokensController(BaseController):
 
         # Prepare headers
         _headers = {
-            'accept': 'application/json',
-            'ServiceRefererName': Configuration.service_referer_name
+            'accept': 'application/json'
         }
 
         # Prepare and execute request

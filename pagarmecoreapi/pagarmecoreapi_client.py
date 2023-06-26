@@ -16,8 +16,8 @@ from pagarmecoreapi.controllers.customers_controller import CustomersController
 from pagarmecoreapi.controllers.charges_controller import ChargesController
 from pagarmecoreapi.controllers.recipients_controller import RecipientsController
 from pagarmecoreapi.controllers.tokens_controller import TokensController
-from pagarmecoreapi.controllers.transfers_controller import TransfersController
 from pagarmecoreapi.controllers.transactions_controller import TransactionsController
+from pagarmecoreapi.controllers.transfers_controller import TransfersController
 
 
 class PagarmecoreapiClient(object):
@@ -57,20 +57,17 @@ class PagarmecoreapiClient(object):
         return TokensController()
 
     @lazy_property
-    def transfers(self):
-        return TransfersController()
-
-    @lazy_property
     def transactions(self):
         return TransactionsController()
 
+    @lazy_property
+    def transfers(self):
+        return TransfersController()
+
 
     def __init__(self,
-                 service_referer_name=None,
                  basic_auth_user_name=None,
                  basic_auth_password=None):
-        if service_referer_name is not None:
-            Configuration.service_referer_name = service_referer_name
         if basic_auth_user_name is not None:
             Configuration.basic_auth_user_name = basic_auth_user_name
         if basic_auth_password is not None:
