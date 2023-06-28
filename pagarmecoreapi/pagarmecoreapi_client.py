@@ -65,14 +65,14 @@ class PagarmecoreapiClient(object):
         return TransactionsController()
 
 
-    def __init__(self,
-                 service_referer_name=None,
+    def __init__(self,           
                  basic_auth_user_name=None,
-                 basic_auth_password=None):
-        if service_referer_name is not None:
-            Configuration.service_referer_name = service_referer_name
+                 basic_auth_password=None,
+                 service_referer_name=None):      
         if basic_auth_user_name is not None:
             Configuration.basic_auth_user_name = basic_auth_user_name
         if basic_auth_password is not None:
             Configuration.basic_auth_password = basic_auth_password
-
+        if service_referer_name is not None:
+            Configuration.service_referer_name = service_referer_name
+            
